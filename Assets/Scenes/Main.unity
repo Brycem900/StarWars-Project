@@ -765,6 +765,7 @@ GameObject:
   - component: {fileID: 2107393484}
   - component: {fileID: 2107393483}
   - component: {fileID: 2107393485}
+  - component: {fileID: 2107393486}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -927,11 +928,11 @@ MonoBehaviour:
   m_StickToGroundForce: 0
   m_GravityMultiplier: 1
   m_MouseLook:
-    XSensitivity: 5
-    YSensitivity: 5
+    XSensitivity: 0
+    YSensitivity: 0
     clampVerticalRotation: 0
-    MinimumX: -360
-    MaximumX: 360
+    MinimumX: -720
+    MaximumX: 720
     smooth: 1
     smoothTime: 5
     lockCursor: 1
@@ -1203,6 +1204,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2107393486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107393473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1459b0746ac5a4b42b225e276697f0fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 0
+  sensitivityX: 15
+  sensitivityY: 15
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
+  frameCounter: 20
 --- !u!1 &2139775468 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000010753552304, guid: 1bfa92ca112491842ad5e3fb6b5ab535,
