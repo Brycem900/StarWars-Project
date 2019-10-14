@@ -158,6 +158,7 @@
      <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
      <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
      <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
+     <Compile Include="Assets\Scripts\ButtonManager.cs" />
      <Compile Include="Assets\Scripts\SmoothMouseLook.cs" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
