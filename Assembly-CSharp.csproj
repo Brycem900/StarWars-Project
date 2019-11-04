@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MobilityArts\SciFiHandGun\Scripts\OrbitAroundTarget.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\2D\Scripts\Camera2DFollow.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\2D\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\2D\Scripts\Platformer2DUserControl.cs" />
@@ -160,13 +161,25 @@
      <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
      <Compile Include="Assets\Scripts\ButtonManager.cs" />
      <Compile Include="Assets\Scripts\SmoothMouseLook.cs" />
+     <Compile Include="Assets\VolumetricLines\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
+     <Compile Include="Assets\VolumetricLines\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
+     <Compile Include="Assets\VolumetricLines\ExampleScenes\ExampleScripts\ShotBehavior.cs" />
+     <Compile Include="Assets\VolumetricLines\Scripts\Utils\TransformExtensionMethods.cs" />
+     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
+     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineSettings.cs" />
+     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineStripBehavior.cs" />
+     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineVertexData.cs" />
+     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricMultiLineBehavior.cs" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
+     <None Include="Assets\VolumetricLines\Shaders\_StripShader.cginc" />
      <None Include="Assets\Prefabs\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water (Basic)\DO_NOT_WORK_IN_VR.txt" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\Projectors\Guidelines.txt" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\ImageEffects\Readme.txt" />
+     <None Include="Assets\VolumetricLines\Shaders\Additive.shader" />
+     <None Include="Assets\VolumetricLines\Shaders\AlphaBlended.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Vehicles\Car\Shaders\DiffuseReflectiveShader.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Vehicles\Aircraft\AircraftGuidelines.txt" />
@@ -176,6 +189,7 @@
      <None Include="Assets\Prefabs\Standard Assets\Vehicles\Car\Shaders\ReflectiveDiffuseSpec.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water\DO_NOT_WORK_IN_VR.txt" />
      <None Include="Assets\Prefabs\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
+     <None Include="Assets\VolumetricLines\Shaders\Strip-Additive.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Fonts\OpenSans\License!.txt" />
      <None Include="Assets\Prefabs\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
@@ -184,13 +198,17 @@
      <None Include="Assets\Prefabs\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
+     <None Include="Assets\VolumetricLines\Shaders\Fast-AlphaBlended.shader" />
+     <None Include="Assets\VolumetricLines\Shaders\Strip-AlphaBlended.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Vehicles\Car\CarGuidelines.txt" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
      <None Include="Assets\Prefabs\Standard Assets\Cameras\CameraGuidelines.txt" />
+     <None Include="Assets\VolumetricLines\Shaders\Fast-Additive.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
+     <None Include="Assets\VolumetricLines\Shaders\_SimpleShader.cginc" />
      <None Include="Assets\Prefabs\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
      <None Include="Assets\Prefabs\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
