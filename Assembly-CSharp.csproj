@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.2.3f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -55,7 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MobilityArts\SciFiHandGun\Scripts\OrbitAroundTarget.cs" />
+     <Compile Include="Assets\Prefabs\SciFiHandGun\Scripts\OrbitAroundTarget.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\2D\Scripts\Camera2DFollow.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\2D\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\2D\Scripts\Platformer2DUserControl.cs" />
@@ -151,14 +149,14 @@
      <Compile Include="Assets\Prefabs\Standard Assets\Vehicles\Car\Scripts\SkidTrail.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\Vehicles\Car\Scripts\Suspension.cs" />
      <Compile Include="Assets\Prefabs\Standard Assets\Vehicles\Car\Scripts\WheelEffects.cs" />
-     <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
-     <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
-     <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
-     <Compile Include="Assets\SampleScenes\Scripts\CameraSwitch.cs" />
-     <Compile Include="Assets\SampleScenes\Scripts\LevelReset.cs" />
-     <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
-     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
-     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
+     <Compile Include="Assets\Samples\Menu\Scripts\MenuSceneLoader.cs" />
+     <Compile Include="Assets\Samples\Menu\Scripts\PauseMenu.cs" />
+     <Compile Include="Assets\Samples\Menu\Scripts\SceneAndURLLoader.cs" />
+     <Compile Include="Assets\Samples\Scripts\CameraSwitch.cs" />
+     <Compile Include="Assets\Samples\Scripts\LevelReset.cs" />
+     <Compile Include="Assets\Samples\Scripts\ParticleSceneControls.cs" />
+     <Compile Include="Assets\Samples\Scripts\PlaceTargetWithMouse.cs" />
+     <Compile Include="Assets\Samples\Scripts\SlowMoButton.cs" />
      <Compile Include="Assets\Scripts\ButtonManager.cs" />
      <Compile Include="Assets\Scripts\SmoothMouseLook.cs" />
      <Compile Include="Assets\VolumetricLines\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
@@ -193,11 +191,13 @@
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Fonts\OpenSans\License!.txt" />
      <None Include="Assets\Prefabs\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+     <None Include="Assets\Prefabs\Fantasy Forest Set\Sources\Shaders\Vegitation.shader" />
      <None Include="Assets\Prefabs\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
+     <None Include="Assets\Prefabs\Fantasy Forest Set\Sources\Shaders\Grid.shader" />
      <None Include="Assets\VolumetricLines\Shaders\Fast-AlphaBlended.shader" />
      <None Include="Assets\VolumetricLines\Shaders\Strip-AlphaBlended.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Vehicles\Car\CarGuidelines.txt" />
@@ -208,37 +208,38 @@
      <None Include="Assets\Prefabs\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
      <None Include="Assets\Prefabs\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
+     <None Include="Assets\Prefabs\Fantasy Forest Set\Sources\Shaders\StandardSpecular_2Sided.shader" />
      <None Include="Assets\VolumetricLines\Shaders\_SimpleShader.cginc" />
      <None Include="Assets\Prefabs\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
      <None Include="Assets\Prefabs\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
      <None Include="Assets\Prefabs\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
-     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
+     <None Include="Assets\Samples\Shaders\Skybox-Procedural.shader" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/bryce/StarWars Project/StarWars-Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Unity Projects/StarWars-Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/bryce/StarWars Project/StarWars-Project/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Unity Projects/StarWars-Project/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/bryce/StarWars Project/StarWars-Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Unity Projects/StarWars-Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/bryce/StarWars Project/StarWars-Project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Unity Projects/StarWars-Project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/bryce/StarWars Project/StarWars-Project/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Unity Projects/StarWars-Project/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/bryce/StarWars Project/StarWars-Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Unity Projects/StarWars-Project/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/bryce/StarWars Project/StarWars-Project/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Unity Projects/StarWars-Project/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/bryce/StarWars Project/StarWars-Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Unity Projects/StarWars-Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/bryce/StarWars Project/StarWars-Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Unity Projects/StarWars-Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
