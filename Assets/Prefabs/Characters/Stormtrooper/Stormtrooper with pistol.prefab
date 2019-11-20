@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 8721758423209888853}
   m_Layer: 0
   m_Name: Stormtrooper with pistol
-  m_TagString: Untagged
+  m_TagString: Stormtrooper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

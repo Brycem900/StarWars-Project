@@ -634,10 +634,10 @@ MonoBehaviour:
   bladeGameObjects:
   - {fileID: 3191634846322601884}
   bladeExtendSpeed: 0.1
-  weaponActive: 0
+  weaponActive: 1
   bladeColor: {r: 0.8018868, g: 0.2004717, b: 0.2004717, a: 1}
   bladeColorIntensity: 1000
-  lightIntensity: 1000
+  lightIntensity: 250
   soundOn: {fileID: 0}
   soundOff: {fileID: 0}
   soundLoop: {fileID: 0}
