@@ -7,6 +7,18 @@ TagManager:
   - Fire
   - B-Droid
   - Stormtrooper
+  - Hood
+  - Alien
+  - Alien Player
+  - B-Droid Player
+  - Ethan
+  - Ethan Player
+  - Hood Player
+  - Stormtrooper Player
+  - Terrain
+  - Lightsaber
+  - Pistol
+  - Rifle
   layers:
   - Default
   - TransparentFX

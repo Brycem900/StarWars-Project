@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8470304310396649777}
   - component: {fileID: 8470304310387076145}
   m_Layer: 0
-  m_Name: Sci-Fi Rifle_fbx
-  m_TagString: Untagged
+  m_Name: Rifle
+  m_TagString: Rifle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

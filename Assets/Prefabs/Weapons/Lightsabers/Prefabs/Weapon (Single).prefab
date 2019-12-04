@@ -420,10 +420,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3191634847286132721}
-  - component: {fileID: 3191634847286132720}
   m_Layer: 0
   m_Name: Weapon (Single)
-  m_TagString: Untagged
+  m_TagString: Lightsaber
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -443,21 +442,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3191634847286132720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3191634847286132727}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e89f256d6d226ff4589fc1043d7c1fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spinXYZ: {x: 0, y: 1, z: -0.5}
-  speed: 50
-  pivot: {fileID: 3191634847080575922}
 --- !u!1 &3191634847293003336
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +578,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3191634847336183634}
-  - component: {fileID: 3191634847336183635}
+  - component: {fileID: 867188879847405101}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -619,7 +603,7 @@ Transform:
   m_Father: {fileID: 3191634847286132721}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3191634847336183635
+--- !u!114 &867188879847405101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -634,17 +618,17 @@ MonoBehaviour:
   bladeGameObjects:
   - {fileID: 3191634846322601884}
   bladeExtendSpeed: 0.1
-  weaponActive: 1
-  bladeColor: {r: 0.8018868, g: 0.2004717, b: 0.2004717, a: 1}
-  bladeColorIntensity: 1000
-  lightIntensity: 250
+  weaponActive: 0
+  bladeColor: {r: 0, g: 0, b: 0, a: 0}
+  bladeColorIntensity: 600
+  lightIntensity: 1000
   soundOn: {fileID: 0}
   soundOff: {fileID: 0}
   soundLoop: {fileID: 0}
   soundSwing: {fileID: 0}
-  AudioSource: {fileID: 3191634846979143559}
-  AudioSourceLoop: {fileID: 3191634847293003338}
-  AudioSourceSwing: {fileID: 3191634846184709104}
+  AudioSource: {fileID: 0}
+  AudioSourceLoop: {fileID: 0}
+  AudioSourceSwing: {fileID: 0}
 --- !u!1 &3191634847535956020
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,7 +705,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 95.492966
-  m_Range: 2
+  m_Range: 0.2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
