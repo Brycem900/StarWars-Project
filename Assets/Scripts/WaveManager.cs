@@ -120,6 +120,7 @@ public class WaveManager : MonoBehaviour
             currentNumberEnemies = maxEnemies;
         }
 
+        enemies.Clear();
         for(var i = 0; i < currentNumberEnemies; i++)
         {
             enemies.Add(SpawnEnemy(PickEnemy()));
