@@ -208,12 +208,10 @@ public class Weapon : MonoBehaviour {
         InitializeAudio();
 
         // light and blade color
-        InitializeBladeColor();
+        UpdateColor();
 
         // initially update blade length, so that it isn't set to what we have in unity's visual editor
         UpdateBlades();
-
-
     }
 
     void InitializeAudio()
@@ -229,14 +227,14 @@ public class Weapon : MonoBehaviour {
     }
 
     // set the color of the light and the blade
-    void InitializeBladeColor()
-    {
-        // update blade color, light color and glow color
-        foreach (Blade blade in blades)
-        {
-            blade.SetColor(bladeColor, bladeColorIntensity);
-        }
-    }
+    // void InitializeBladeColor()
+    // {
+    //     // update blade color, light color and glow color
+    //     foreach (Blade blade in blades)
+    //     {
+    //         blade.SetColor(bladeColor, bladeColorIntensity);
+    //     }
+    // }
 	
 	// Update is called once per frame
 	void Update () {
@@ -246,51 +244,68 @@ public class Weapon : MonoBehaviour {
 
         // light and blade color
         // only for testing dynamic colors, works.
-        // UpdateColor();
+        UpdateColor();
 
         // swing speed
-        updateSwingHandler();
+        // updateSwingHandler();
 
 
     }
 
-    // calculate swing speed
-    private void updateSwingHandler()
+    public void UpdateColor()
     {
-        // calculate speed
-        swingSpeed = (((transform.position - lastSwingPosition).magnitude) / Time.deltaTime);
-
-        // remember last position
-        lastSwingPosition = transform.position;
-
-        // swing sound
-        // a probably better solution would be to play the swing sound permanently and only fade the volume in and out depending on the swing speed
-        if (weaponActive)
+        foreach (Blade blade in blades)
         {
-            // if certain swing speed is reached, play swing audio sound. if swinging stopped, fade the volume out
-            if (swingSpeed > 0.8) // just random swing values; should be more generic
-            {
-                if (!AudioSourceSwing.isPlaying)
-                {
-                    AudioSourceSwing.volume = 1f;
-                    AudioSourceSwing.PlayOneShot(soundSwing);
-                }
-            }
-            else
-            {
+            blade.SetColor(bladeColor, bladeColorIntensity);
+        }
+    }
 
-                // fade out volume
-                if(AudioSourceSwing.isPlaying && AudioSourceSwing.volume > 0)
-                {
-                    AudioSourceSwing.volume *= 0.9f; // just random swing values; should be more generic
-                }
-                else
-                {
-                    AudioSourceSwing.volume = 0;
-                    AudioSourceSwing.Stop();
-                }
+    // calculate swing speed
+    // private void updateSwingHandler()
+    // {
+    //     // calculate speed
+    //     swingSpeed = (((transform.position - lastSwingPosition).magnitude) / Time.deltaTime);
 
-            }
+    //     // remember last position
+    //     lastSwingPosition = transform.position;
+
+    //     // swing sound
+    //     // a probably better solution would be to play the swing sound permanently and only fade the volume in and out depending on the swing speed
+    //     if (weaponActive)
+    //     {
+    //         // if certain swing speed is reached, play swing audio sound. if swinging stopped, fade the volume out
+    //         if (swingSpeed > 10) // just random swing values; should be more generic
+    //         {
+    //             if (!AudioSourceSwing.isPlaying)
+    //             {
+    //                 AudioSourceSwing.volume = 1f;
+    //                 AudioSourceSwing.PlayOneShot(soundSwing);
+    //             }
+    //         }
+    //         else
+    //         {
+
+    //             // fade out volume
+    //             if(AudioSourceSwing.isPlaying && AudioSourceSwing.volume > 0)
+    //             {
+    //                 AudioSourceSwing.volume *= 0.9f; // just random swing values; should be more generic
+    //             }
+    //             else
+    //             {
+    //                 AudioSourceSwing.volume = 0;
+    //                 AudioSourceSwing.Stop();
+    //             }
+
+    //         }
+    //     }
+    // }
+
+    public void PlaySwingSound()
+    {
+        if(!AudioSourceSwing.isPlaying)
+        {
+            AudioSourceSwing.volume = 1f;
+            AudioSourceSwing.PlayOneShot(soundSwing);
         }
     }
 
@@ -315,6 +330,7 @@ public class Weapon : MonoBehaviour {
         }
             
 
+        AudioSource.Stop();
         AudioSource.PlayOneShot(soundOn);
         AudioSourceLoop.clip = soundLoop;
         AudioSourceLoop.Play();
@@ -328,6 +344,7 @@ public class Weapon : MonoBehaviour {
             blade.SetActive(false);
         }
 
+        AudioSource.Stop();
         AudioSource.PlayOneShot(soundOff);
         AudioSourceLoop.Stop();
 

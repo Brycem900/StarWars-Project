@@ -620,15 +620,15 @@ MonoBehaviour:
   bladeExtendSpeed: 0.1
   weaponActive: 0
   bladeColor: {r: 0, g: 0, b: 0, a: 0}
-  bladeColorIntensity: 600
+  bladeColorIntensity: 1
   lightIntensity: 1000
-  soundOn: {fileID: 0}
-  soundOff: {fileID: 0}
+  soundOn: {fileID: 8300000, guid: 54740807f5901634280438508c9db45b, type: 3}
+  soundOff: {fileID: 8300000, guid: 9db3709f2602dd443bda367cf9df7e39, type: 3}
   soundLoop: {fileID: 0}
-  soundSwing: {fileID: 0}
-  AudioSource: {fileID: 0}
-  AudioSourceLoop: {fileID: 0}
-  AudioSourceSwing: {fileID: 0}
+  soundSwing: {fileID: 8300000, guid: 7835f4ef6e76f3d44b8dddee13e47a15, type: 3}
+  AudioSource: {fileID: 3191634846979143559}
+  AudioSourceLoop: {fileID: 3191634847293003338}
+  AudioSourceSwing: {fileID: 3191634846184709104}
 --- !u!1 &3191634847535956020
 GameObject:
   m_ObjectHideFlags: 0
