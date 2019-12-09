@@ -64,7 +64,11 @@ public class WaveManager : MonoBehaviour
             spawnMiddle = gameObject.transform;
         }
 
-        random = new System.Random();
+        
+        var r = new System.Security.Cryptography.RNGCryptoServiceProvider();
+        var bytes = new byte[sizeof(System.Int32)];
+        r.GetBytes(bytes);
+        random = new System.Random(System.BitConverter.ToInt32(bytes, 0));
         enemies = new List<GameObject>();
         wave = 0;
         currentWaveCountdown = 0;
@@ -153,6 +157,7 @@ public class WaveManager : MonoBehaviour
 
         var spawnedEnemy = Instantiate<GameObject>(enemyType, newPosition, Quaternion.identity);
         spawnedEnemy.GetComponent<UnityStandardAssets.Characters.ThirdPerson.AICharacterControl>().target = currentPlayer.transform;
+        spawnedEnemy.AddComponent<CombatManager>();
 
         return spawnedEnemy;
     }

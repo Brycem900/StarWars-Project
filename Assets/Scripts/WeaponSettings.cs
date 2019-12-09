@@ -133,47 +133,47 @@ public class WeaponSettings
         [ALIEN_PLAYER_NAME]         = new WeaponSettings{ position=ALIEN_RIFLE_POSITION, rotation=ALIEN_RIFLE_ROTATION, scale=ALIEN_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
     };
 
-    public static bool isHood(string tag)
+    public static bool IsHood(string tag)
     {
         return tag == HOOD_NAME || tag == HOOD_PLAYER_NAME;
     }
 
-    public static bool isEthan(string tag)
+    public static bool IsEthan(string tag)
     {
         return tag == ETHAN_NAME || tag == ETHAN_PLAYER_NAME;
     }
 
-    public static bool isBDroid(string tag)
+    public static bool IsBDroid(string tag)
     {
         return tag == BDROID_NAME || tag == BDROID_PLAYER_NAME;
     }
 
-    public static bool isStormtrooper(string tag)
+    public static bool IsStormtrooper(string tag)
     {
         return tag == STORMTROOPER_NAME || tag == STORMTROOPER_PLAYER_NAME;
     }
 
-    public static bool isAlien(string tag)
+    public static bool IsAlien(string tag)
     {
         return tag == ALIEN_NAME || tag == ALIEN_PLAYER_NAME;
     }
 
-    public static bool isPlayer(string tag)
+    public static bool IsPlayer(string tag)
     {
         return tag.Contains("Player");
     }
 
-    public static bool isLightsaber(string tag)
+    public static bool IsLightsaber(string tag)
     {
         return tag == LIGHTSABER_NAME;
     }
 
-    public static bool isPistol(string tag)
+    public static bool IsPistol(string tag)
     {
         return tag == PISTOL_NAME;
     }
 
-    public static bool isRifle(string tag)
+    public static bool IsRifle(string tag)
     {
         return tag == RIFLE_NAME;
     }

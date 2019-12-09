@@ -19,6 +19,8 @@ public class WeaponManager : MonoBehaviour
     private WeaponSettings lightsaberSettings;
     private WeaponSettings pistolSettings;
     private WeaponSettings rifleSettings;
+    private bool isPlayer;
+    private Color lightsaberColor;
 
     public GameWeapon CurrentWeapon
     {
@@ -31,6 +33,26 @@ public class WeaponManager : MonoBehaviour
         rightHand = transform.Find(WeaponSettings.RIGHT_HAND).gameObject;
         currentAnimator = GetComponent<Animator>();
         currentAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+        if(WeaponSettings.IsHood(gameObject.tag))
+        {
+            lightsaberColor = WeaponSettings.HOOD_LIGHTSABER_COLOR;
+        }
+        else if(WeaponSettings.IsEthan(gameObject.tag))
+        {
+            lightsaberColor = WeaponSettings.ETHAN_LIGHTSABER_COLOR;
+        }
+        else if(WeaponSettings.IsStormtrooper(gameObject.tag))
+        {
+            lightsaberColor = WeaponSettings.STORMTROOPER_LIGHTSABER_COLOR;
+        }
+        else if(WeaponSettings.IsAlien(gameObject.tag))
+        {
+            lightsaberColor = WeaponSettings.ALIEN_LIGHTSABER_COLOR;
+        }
+
+        isPlayer = WeaponSettings.IsPlayer(gameObject.tag);
+
         try
         {
             lightsaberSettings = WeaponSettings.LIGHTSABER_MAPPINGS[gameObject.tag];
@@ -77,9 +99,9 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(TOGGLE_KEY_CODE) && WeaponSettings.isPlayer(gameObject.tag))
+        if(Input.GetKeyDown(TOGGLE_KEY_CODE) && isPlayer)
         {
-            if(currentWeapon != null && currentWeapon.Weapon != null && WeaponSettings.isLightsaber(currentWeapon.Weapon.tag))
+            if(currentWeapon != null && currentWeapon.Weapon != null && WeaponSettings.IsLightsaber(currentWeapon.Weapon.tag))
             {
                 getLightsaberWeaponObject().GetComponent<Weapon>().ToggleWeaponOnOff();
             }
@@ -113,25 +135,9 @@ public class WeaponManager : MonoBehaviour
         createWeapon(lightsaber, durability, lightsaberSettings.position, lightsaberSettings.rotation, lightsaberSettings.scale, lightsaberSettings.controllerPath);
 
         var lightsaberObject = getLightsaberWeaponObject();
+        lightsaberObject.GetComponent<Weapon>().bladeColor = lightsaberColor;
 
-        if(WeaponSettings.isHood(gameObject.tag))
-        {
-            lightsaberObject.GetComponent<Weapon>().bladeColor = WeaponSettings.HOOD_LIGHTSABER_COLOR;
-        }
-        else if(WeaponSettings.isEthan(gameObject.tag))
-        {
-            lightsaberObject.GetComponent<Weapon>().bladeColor = WeaponSettings.ETHAN_LIGHTSABER_COLOR;
-        }
-        else if(WeaponSettings.isStormtrooper(gameObject.tag))
-        {
-            lightsaberObject.GetComponent<Weapon>().bladeColor = WeaponSettings.STORMTROOPER_LIGHTSABER_COLOR;
-        }
-        else if(WeaponSettings.isAlien(gameObject.tag))
-        {
-            lightsaberObject.GetComponent<Weapon>().bladeColor = WeaponSettings.ALIEN_LIGHTSABER_COLOR;
-        }
-
-        if(!WeaponSettings.isPlayer(gameObject.tag))
+        if(!isPlayer)
         {
             lightsaberObject.GetComponent<Weapon>().ToggleWeaponOnOff();
         }
