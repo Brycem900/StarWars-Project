@@ -1408,10 +1408,11 @@ GameObject:
   - component: {fileID: 1582930687279687564}
   - component: {fileID: -251926197470469638}
   - component: {fileID: -747330729576880772}
-  - component: {fileID: -2075378351087933886}
   - component: {fileID: -1378506789836544133}
-  - component: {fileID: -470819671074480563}
   - component: {fileID: 486586841040308264}
+  - component: {fileID: 5100242778468574107}
+  - component: {fileID: 466220035282388378}
+  - component: {fileID: -1892229894810241909}
   m_Layer: 0
   m_Name: Ethan
   m_TagString: Ethan
@@ -1485,26 +1486,6 @@ CapsuleCollider:
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0.05}
---- !u!114 &-2075378351087933886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5559387025751980261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 6
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
 --- !u!195 &-1378506789836544133
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1527,19 +1508,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-470819671074480563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5559387025751980261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &486586841040308264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,6 +1524,52 @@ MonoBehaviour:
     type: 3}
   pistol: {fileID: 1244390726855398, guid: 392a05bd229c33043ae112a856120172, type: 3}
   rifle: {fileID: 8470304310394462193, guid: d4fcacc213c7f0c428ca415a6a0d6b9f, type: 3}
+--- !u!114 &5100242778468574107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559387025751980261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10cca318e4fd2304cbe833cccb1d6260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  turnSpeed: 3
+--- !u!114 &466220035282388378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559387025751980261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c179fdf24a9be47bb6e2eb7597f205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!114 &-1892229894810241909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559387025751980261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c86dfe9d1d028045887b1d0a2b92f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  timeToZoomIn: 0.2
+  zoomInAmount: 30
+  rifleBullet: {fileID: 8863866267780623281, guid: e420155b7c0932e4bab34aaba2de85a5,
+    type: 3}
+  pistolBullet: {fileID: 8863866267780623281, guid: 4d306c31954c1b342a4e9bac25a493d8,
+    type: 3}
 --- !u!1 &5655409436234815612
 GameObject:
   m_ObjectHideFlags: 0

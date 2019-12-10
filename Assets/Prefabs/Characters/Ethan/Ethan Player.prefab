@@ -1412,6 +1412,7 @@ GameObject:
   - component: {fileID: 2152319651110122752}
   - component: {fileID: -6463810081017587021}
   - component: {fileID: 442579377639307549}
+  - component: {fileID: -8449785751746088054}
   m_Layer: 0
   m_Name: Ethan Player
   m_TagString: Ethan Player
@@ -1517,7 +1518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ede940ec92b4b64483168e361e90f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!114 &-6463810081017587021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,6 +1546,25 @@ MonoBehaviour:
     type: 3}
   pistol: {fileID: 1244390726855398, guid: 392a05bd229c33043ae112a856120172, type: 3}
   rifle: {fileID: 8470304310394462193, guid: d4fcacc213c7f0c428ca415a6a0d6b9f, type: 3}
+--- !u!114 &-8449785751746088054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559387025751980261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c86dfe9d1d028045887b1d0a2b92f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  timeToZoomIn: 0.2
+  zoomInAmount: 30
+  rifleBullet: {fileID: 8863866267780623281, guid: e420155b7c0932e4bab34aaba2de85a5,
+    type: 3}
+  pistolBullet: {fileID: 8863866267780623281, guid: 4d306c31954c1b342a4e9bac25a493d8,
+    type: 3}
 --- !u!1 &5655409436234815612
 GameObject:
   m_ObjectHideFlags: 0

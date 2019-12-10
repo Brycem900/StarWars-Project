@@ -1912,10 +1912,11 @@ GameObject:
   - component: {fileID: 3701832997415216798}
   - component: {fileID: 7103020481432208259}
   - component: {fileID: 283007302263210632}
-  - component: {fileID: -2740956325526928330}
   - component: {fileID: -3833581766878532190}
-  - component: {fileID: 9146961380255866006}
   - component: {fileID: 5205288732494703271}
+  - component: {fileID: 4671369566126354739}
+  - component: {fileID: 267411617959653368}
+  - component: {fileID: 8954131985261079853}
   m_Layer: 0
   m_Name: Stormtrooper
   m_TagString: Stormtrooper
@@ -1988,26 +1989,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-2740956325526928330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750368842865621495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.1
 --- !u!195 &-3833581766878532190
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2030,19 +2011,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &9146961380255866006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750368842865621495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!114 &5205288732494703271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2059,6 +2027,52 @@ MonoBehaviour:
     type: 3}
   pistol: {fileID: 1244390726855398, guid: 392a05bd229c33043ae112a856120172, type: 3}
   rifle: {fileID: 8470304310394462193, guid: d4fcacc213c7f0c428ca415a6a0d6b9f, type: 3}
+--- !u!114 &4671369566126354739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750368842865621495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10cca318e4fd2304cbe833cccb1d6260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  turnSpeed: 3
+--- !u!114 &267411617959653368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750368842865621495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c179fdf24a9be47bb6e2eb7597f205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!114 &8954131985261079853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750368842865621495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c86dfe9d1d028045887b1d0a2b92f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  timeToZoomIn: 0.2
+  zoomInAmount: 30
+  rifleBullet: {fileID: 8863866267780623281, guid: e420155b7c0932e4bab34aaba2de85a5,
+    type: 3}
+  pistolBullet: {fileID: 8863866267780623281, guid: 4d306c31954c1b342a4e9bac25a493d8,
+    type: 3}
 --- !u!1 &7761779831021997458
 GameObject:
   m_ObjectHideFlags: 0

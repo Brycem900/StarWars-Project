@@ -7,9 +7,11 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-    private static readonly float SECONDS_BETWEEN_WAVES = 10;
     private static readonly string WAVE_STARTS_MESSAGE = "Next Wave Starts in: ";
     private static readonly string WAVE_STARTED_MESSAGE = "Wave Started";
+
+    [SerializeField]
+    private float secondsBetweenWaves = 10f;
 
     [SerializeField]
     private Transform spawnMiddle;
@@ -59,6 +61,8 @@ public class WaveManager : MonoBehaviour
         Assert.IsTrue(enemySpawnRates.SequenceEqual(ordered));
 
         Assert.IsNotNull(currentPlayer);
+        Assert.IsNotNull(waveUIText);
+        Assert.IsNotNull(waveStartsUIText);
         if(spawnMiddle == null)
         {
             spawnMiddle = gameObject.transform;
@@ -102,7 +106,7 @@ public class WaveManager : MonoBehaviour
 
     public void StartCountDown()
     {
-        currentWaveCountdown = SECONDS_BETWEEN_WAVES;
+        currentWaveCountdown = secondsBetweenWaves;
     }
 
     public void StartWave()
@@ -146,7 +150,7 @@ public class WaveManager : MonoBehaviour
             }
         }
 
-        return null;
+        return enemyTypes[enemyTypes.Count - 1];
     }
 
     private GameObject SpawnEnemy(GameObject enemyType)
@@ -156,7 +160,7 @@ public class WaveManager : MonoBehaviour
         newPosition.z = (float) (spawnRadius * random.NextDouble() * (random.Next(0, 2) * 2 - 1)) + spawnMiddle.position.z;
 
         var spawnedEnemy = Instantiate<GameObject>(enemyType, newPosition, Quaternion.identity);
-        spawnedEnemy.GetComponent<UnityStandardAssets.Characters.ThirdPerson.AICharacterControl>().target = currentPlayer.transform;
+        spawnedEnemy.GetComponent<AIControl>().target = currentPlayer.transform;
         spawnedEnemy.AddComponent<CombatManager>();
 
         return spawnedEnemy;

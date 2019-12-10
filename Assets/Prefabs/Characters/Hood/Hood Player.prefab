@@ -419,6 +419,7 @@ GameObject:
   - component: {fileID: 2421824510270278591}
   - component: {fileID: -4772515843887228345}
   - component: {fileID: -5366294808009816583}
+  - component: {fileID: -3630596315911627280}
   m_Layer: 0
   m_Name: Hood Player
   m_TagString: Hood Player
@@ -551,7 +552,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ede940ec92b4b64483168e361e90f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+--- !u!114 &-3630596315911627280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2725279127403265954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c86dfe9d1d028045887b1d0a2b92f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
+  timeToZoomIn: 0.2
+  zoomInAmount: 30
+  rifleBullet: {fileID: 8863866267780623281, guid: e420155b7c0932e4bab34aaba2de85a5,
+    type: 3}
+  pistolBullet: {fileID: 8863866267780623281, guid: 4d306c31954c1b342a4e9bac25a493d8,
+    type: 3}
 --- !u!1 &2732440509576465351
 GameObject:
   m_ObjectHideFlags: 0

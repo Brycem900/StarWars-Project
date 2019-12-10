@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class WeaponManager : MonoBehaviour
 {
-    private static KeyCode TOGGLE_KEY_CODE = KeyCode.E;
-
     public GameObject lightsaber;
     public GameObject pistol;
     public GameObject rifle;
@@ -24,7 +22,7 @@ public class WeaponManager : MonoBehaviour
 
     public GameWeapon CurrentWeapon
     {
-        get; set;
+        get{ return currentWeapon; } set{ currentWeapon = value; }
     }
 
     // Start is called before the first frame update
@@ -94,17 +92,6 @@ public class WeaponManager : MonoBehaviour
         else if(lightsaberSettings != null)
         {
             EquipLightsaber(1f);
-        }
-    }
-
-    void Update()
-    {
-        if(Input.GetKeyDown(TOGGLE_KEY_CODE) && isPlayer)
-        {
-            if(currentWeapon != null && currentWeapon.Weapon != null && WeaponSettings.IsLightsaber(currentWeapon.Weapon.tag))
-            {
-                getLightsaberWeaponObject().GetComponent<Weapon>().ToggleWeaponOnOff();
-            }
         }
     }
 

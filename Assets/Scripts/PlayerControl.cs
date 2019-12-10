@@ -3,50 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
+[RequireComponent(typeof(CharacterControl))]
 public class PlayerControl : MonoBehaviour
 {
-    public float speed = 5f;
-    private Rigidbody m_Rigidbody;
+    private CharacterControl character;
     // Start is called before the first frame update
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+        character = GetComponent<CharacterControl>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        var h = CrossPlatformInputManager.GetAxis("Horizontal");
-        var v = CrossPlatformInputManager.GetAxis("Vertical");
-        var shift = CrossPlatformInputManager.GetAxis("LeftShift");
+        var h = Input.GetAxis("Horizontal");
+        var v = Input.GetAxis("Vertical");
+        var shift = Input.GetAxis("LeftShift");
+        var rightClick = Input.GetAxis("Fire2");
+        var newSpeed = character.OriginalSpeed;
 
-        var newPosition = transform.position;
-        var newSpeed = speed;
-
-        if(shift > 0)
+        if(shift > 0 || rightClick > 0)
         {
-            newSpeed /= 2;
+            newSpeed = character.OriginalSpeed / 2;
         }
 
-        if(h > 0)
+        if(h != 0 || v < 0)
         {
-            newPosition += h*transform.forward * newSpeed * Time.smoothDeltaTime;
-        }
-        else if(h < 0)
-        {
-            newPosition -= h*transform.forward * newSpeed * Time.smoothDeltaTime;
-        }
-        else if(v > 0)
-        {
-            newPosition += v*transform.forward * newSpeed * Time.smoothDeltaTime;
-        }
-        else if(v < 0)
-        {
-            newPosition -= v*transform.forward * newSpeed * Time.smoothDeltaTime;
+            newSpeed = character.OriginalSpeed / 2;
         }
 
-        m_Rigidbody.MovePosition(newPosition);
+        character.Speed = newSpeed;
 
-        // transform.position = Vector3.Lerp(transform.position, newPosition, Time.smoothDeltaTime);
+        var verticalMovement = transform.forward * System.Math.Sign(v);
+        var horizontalMovement = transform.right * System.Math.Sign(h);
+
+        character.Move(verticalMovement + horizontalMovement);
+        var lookAtPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
+
+        character.LookAtRotate(lookAtPosition);
     }
 }
