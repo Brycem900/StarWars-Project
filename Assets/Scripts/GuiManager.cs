@@ -14,16 +14,26 @@ public class GuiManager : MonoBehaviour
     public Text health;
     public Text ammo;
     public Text wave;
-    public Text score;
+    public Text scoreText;
     public Text waveStarts;
+    public GameObject crosshair;
 
     private CombatManager combatManager;
     private WaveManager waveManager;
+    private int score;
+
+    public int Score
+    {
+        get { return score; }
+        set { score = value; }
+    }
 
     void Start()
     {
         combatManager = currentPlayer.GetComponent<CombatManager>();
         waveManager = waveManagerObject.GetComponent<WaveManager>();
+        crosshair.SetActive(false);
+        score = 0;
     }
     
     void Update()
@@ -48,5 +58,8 @@ public class GuiManager : MonoBehaviour
         {
             waveStarts.text = System.String.Format("{0} {1:#0.0}", WAVE_STARTS_MESSAGE, waveManager.CurrentWaveCountdown);
         }
+
+        scoreText.text = score.ToString();
+        crosshair.SetActive(combatManager.Aiming);
     }
 }

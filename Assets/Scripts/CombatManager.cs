@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(WeaponManager))]
@@ -14,12 +15,21 @@ public class CombatManager : MonoBehaviour
     private static readonly string DEATH_TRIGGER = "Death";
     private static readonly string SHOOT_TRIGGER = "Shoot";
     private static readonly string SHOOT_SPEED = "ShootSpeed";
+    private static readonly string SHOOT_ANIMATIONS = "ShootAnimations";
+    private static readonly string SHOOT_ANIMATION_TYPE = "RandomShoot";
     private static readonly string RELOAD_TRIGGER = "Reload";
     private static readonly string RELOAD_SPEED = "ReloadSpeed";
     private static readonly string DEATH_ANIMATION_TYPE = "RandomDeath";
-    private static readonly string DEATH_ANIMAIONS = "DeathAnimations";
+    private static readonly string DEATH_ANIMATIONS = "DeathAnimations";
     private static readonly string AIMING_TRIGGER = "Aiming";
     private static readonly float DESTROY_DELAY_SECONDS = 5f;
+
+    private static readonly Dictionary<int, string> SWING_ANIMATION_TYPES = new Dictionary<int, string>
+    {
+        [1] = "Downward Swing",
+        [2] = "Horizontal Swing",
+        [3] = "Upward Swing"
+    };
 
     private float health;
     private float damageReductionPercentage;
@@ -31,15 +41,17 @@ public class CombatManager : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent agent;
     private Animator animController;
     private WeaponManager weaponManager;
-    private AnimationClip reloadAnimation;
-    private AnimationClip shootAnimation;
+    private AnimationClip reloadAnimation = null;
+    private AnimationClip shootAnimation = null;
+    private List<AnimationClip> swingAnimations;
     private float originalZoom;
     private float zoomTimer;
+    private bool dying;
 
     public float Health
     {
         get { return health * (1 + HealthExtraPercentage); }
-        set { health = value * (1 + DamageReductionPercentage); }
+        set { health = value; }
     }
 
     public float DamageReductionPercentage
@@ -71,6 +83,11 @@ public class CombatManager : MonoBehaviour
         get { return weaponManager; }
     }
 
+    public bool Aiming
+    {
+        get { return aiming; }
+    }
+
     void Start()
     {
         health = 100f;
@@ -85,30 +102,16 @@ public class CombatManager : MonoBehaviour
         originalZoom = Camera.main.fieldOfView;
         zoomTimer = timeToZoomIn;
         lastLeftClick = 0;
-
-        var clips = animController.runtimeAnimatorController.animationClips;
-        foreach(var clip in clips)
-        {
-            if(clip.name.Contains(RELOAD_TRIGGER))
-            {
-                reloadAnimation = clip;
-            }
-            else if(clip.name.Contains(SHOOT_TRIGGER))
-            {
-                shootAnimation = clip;
-            }
-            if(reloadAnimation != null && shootAnimation != null)
-            {
-                break;
-            }
-        }
+        swingAnimations = new List<AnimationClip>();
+        dying = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Health <= 0)
+        if(Health <= 0 && !dying)
         {
+            dying = true;
             if(agent != null)
             {
                 GetComponent<AIControl>().target = null;
@@ -116,11 +119,33 @@ public class CombatManager : MonoBehaviour
                 agent = null;
             }
             animController.SetTrigger(DEATH_TRIGGER);
-            var deathAnimation = Random.Range(1, animController.GetInteger(DEATH_ANIMAIONS) + 1);
+            var deathAnimation = Random.Range(1, animController.GetInteger(DEATH_ANIMATIONS) + 1);
             animController.SetInteger(DEATH_ANIMATION_TYPE, deathAnimation);
             Destroy(gameObject, DESTROY_DELAY_SECONDS);
+            if(!isPlayer)
+            {
+                var GUI = GameObject.FindWithTag("GUI");
+                if(GUI != null)
+                {
+                    var score = 0;
+                    if(WeaponSettings.IsPistol(weaponManager.CurrentWeapon.gameObject.tag))
+                    {
+                        score += 10;
+                    }
+                    else if(WeaponSettings.IsRifle(weaponManager.CurrentWeapon.gameObject.tag))
+                    {
+                        score += 30;
+                    }
+                    else if(WeaponSettings.IsLightsaber(weaponManager.CurrentWeapon.gameObject.tag))
+                    {
+                        score += 70;
+                    }
+
+                    GUI.GetComponent<GuiManager>().Score += score;
+                }
+            }
         }
-        else
+        else if(!dying)
         {
             if(agent != null)
             {
@@ -158,6 +183,10 @@ public class CombatManager : MonoBehaviour
                     var gun = weaponManager.CurrentWeapon.GetComponent<GunWeapon>();
                     if(gun != null && !gun.Reloading)
                     {
+                        if(reloadAnimation == null)
+                        {
+                            GetClips();
+                        }
                         gun.Reloading = true;
                         gun.PlayReloadSound();
                         animController.SetFloat(RELOAD_SPEED, reloadAnimation.length / gun.ReloadTime);
@@ -185,14 +214,74 @@ public class CombatManager : MonoBehaviour
         var gun = weaponManager.CurrentWeapon.GetComponent<GunWeapon>();
         if(gun != null)
         {
+            if(shootAnimation == null)
+            {
+                GetClips();
+            }
             animController.SetFloat(SHOOT_SPEED, shootAnimation.length / gun.TimeBetweenShots);
+        }
+        else
+        {
+            var lightsaber = weaponManager.CurrentWeapon.GetComponent<LightsaberWeapon>();
+            if(lightsaber != null)
+            {
+                if(swingAnimations.Count == 0)
+                {
+                    GetClips();
+                }
+                var shootAnimation = Random.Range(1, animController.GetInteger(SHOOT_ANIMATIONS) + 1);
+                var swingLength = 1f;
+                foreach(var animation in swingAnimations)
+                {
+                    if(animation.name == SWING_ANIMATION_TYPES[shootAnimation])
+                    {
+                        swingLength = animation.length;
+                        break;
+                    }
+                }
+                animController.SetFloat(SHOOT_SPEED, swingLength / lightsaber.TimeBetweenSwings);
+                animController.SetInteger(SHOOT_ANIMATION_TYPE, shootAnimation);
+            }
         }
         animController.SetTrigger(SHOOT_TRIGGER);
         weaponManager.WeaponComponent.Attack();
     }
 
+    private void DoneShooting()
+    {
+        var lightsaber = weaponManager.CurrentWeapon.GetComponent<LightsaberWeapon>();
+        if(lightsaber != null)
+        {
+            lightsaber.DoneAttack();
+        }
+    }
+
     private void DoneReloading()
     {
-        ((GunWeapon) weaponManager.WeaponComponent).Reload();
+        var gun = weaponManager.WeaponComponent.GetComponent<GunWeapon>();
+        if(gun != null)
+        {
+            gun.Reload();
+        }
+    }
+
+    private void GetClips()
+    {
+        var clips = animController.runtimeAnimatorController.animationClips;
+        foreach(var clip in clips)
+        {
+            if(clip.name.Contains(RELOAD_TRIGGER))
+            {
+                reloadAnimation = clip;
+            }
+            else if(clip.name.Contains(SHOOT_TRIGGER))
+            {
+                shootAnimation = clip;
+            }
+            else if(clip.name.Contains("Swing"))
+            {
+                swingAnimations.Add(clip);
+            }
+        }
     }
 }

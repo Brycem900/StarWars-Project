@@ -84,17 +84,14 @@ public class GunWeapon : GameWeapon
 
     override public void Attack()
     {
-        if(CanAttack())
+        untilCanShoot = Time.time + timeBetweenShots;
+        var realBullet = Instantiate<GameObject>(bullet, OwnerHand.transform.position, Owner.transform.rotation);
+        realBullet.GetComponent<Bullet>().Owner = Owner;
+        realBullet.GetComponent<Bullet>().Damage = Random.Range(MinDamage, MaxDamage);
+        CurrentClip--;
+        if(sounds.Count > 0)
         {
-            untilCanShoot = Time.time + timeBetweenShots;
-            var realBullet = Instantiate<GameObject>(bullet, OwnerHand.transform.position, Owner.transform.rotation);
-            realBullet.GetComponent<Bullet>().Owner = Owner;
-            realBullet.GetComponent<Bullet>().Damage = Random.Range(MinDamage, MaxDamage);
-            CurrentClip--;
-            if(sounds.Count > 0)
-            {
-                audio.PlayOneShot(sounds[Random.Range(0, sounds.Count)]);
-            }
+            audio.PlayOneShot(sounds[Random.Range(0, sounds.Count)]);
         }
     }
 

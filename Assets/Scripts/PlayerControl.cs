@@ -6,15 +6,11 @@ using UnityStandardAssets.CrossPlatformInput;
 [RequireComponent(typeof(CharacterControl))]
 public class PlayerControl : MonoBehaviour
 {
-    public float timeToFullSpeed = 0.5f;
-
     private CharacterControl character;
-    private float currentTimeToFullSpeed;
     // Start is called before the first frame update
     void Start()
     {
         character = GetComponent<CharacterControl>();
-        currentTimeToFullSpeed = 0f;
     }
 
     // Update is called once per frame
@@ -24,22 +20,16 @@ public class PlayerControl : MonoBehaviour
         var v = Input.GetAxis("Vertical");
         var shift = Input.GetAxis("LeftShift");
         var rightClick = Input.GetAxis("Fire2");
-        currentTimeToFullSpeed += Time.deltaTime;
-        if(currentTimeToFullSpeed > timeToFullSpeed)
-        {
-            currentTimeToFullSpeed = timeToFullSpeed;
-        }
 
-        var newSpeed = character.OriginalSpeed * (currentTimeToFullSpeed / timeToFullSpeed);
-
+        var newSpeed = character.OriginalSpeed;
 
         if(shift > 0 || rightClick > 0)
         {
-            newSpeed /= 2f;
+            newSpeed /= 1.5f;
         }
         else if(h != 0 && v != 0)
         {
-            newSpeed /= 2f;
+            newSpeed /= 1.2f;
         }
         else if(h != 0 || v < 0)
         {
@@ -48,17 +38,12 @@ public class PlayerControl : MonoBehaviour
 
         character.Speed = newSpeed;
 
-        var verticalMovement = transform.forward * System.Math.Sign(v);
-        var horizontalMovement = transform.right * System.Math.Sign(h);
+        var verticalMovement = transform.forward * System.Math.Sign(v) * Time.deltaTime;
+        var horizontalMovement = transform.right * System.Math.Sign(h) * Time.deltaTime;
 
         character.Move(verticalMovement + horizontalMovement);
         var lookAtPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
 
         character.LookAtRotate(lookAtPosition);
-
-        if(v == 0 && h == 0)
-        {
-            currentTimeToFullSpeed = 0;
-        }
     }
 }

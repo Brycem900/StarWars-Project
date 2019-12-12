@@ -19,6 +19,7 @@ TagManager:
   - Lightsaber
   - Pistol
   - Rifle
+  - GUI
   layers:
   - Default
   - TransparentFX

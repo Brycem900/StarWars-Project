@@ -18,6 +18,8 @@ public class CharacterControl : MonoBehaviour
     private float originalSpeed;
     private Rigidbody rbody;
     private Animator animator;
+    private float horizontalSpeed;
+    private float verticalSpeed;
 
     public float OriginalSpeed
     {
@@ -39,11 +41,27 @@ public class CharacterControl : MonoBehaviour
         rbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         originalSpeed = speed;
+        horizontalSpeed = 0f;
+        verticalSpeed = 0f;
+    }
+
+    void FixedUpdate()
+    {
+        horizontalSpeed -= System.Math.Sign(horizontalSpeed) * Time.fixedDeltaTime * (float) System.Math.PI;
+        verticalSpeed -= System.Math.Sign(verticalSpeed) * Time.fixedDeltaTime * (float) System.Math.PI;
+        if(System.Math.Abs(horizontalSpeed) < 0.01)
+        {
+            horizontalSpeed = 0;
+        }
+        if(System.Math.Abs(verticalSpeed) < 0.01)
+        {
+            verticalSpeed = 0;
+        }
     }
 
     public void Move(Vector3 moveVector)
     {
-        var newPosition = transform.position + (moveVector * Speed * Time.fixedDeltaTime);
+        var newPosition = transform.position + (moveVector * Speed);
         var direction = -transform.InverseTransformDirection(transform.position - newPosition);
         var realForward = direction.z;
         var realRight = direction.x;
@@ -55,8 +73,21 @@ public class CharacterControl : MonoBehaviour
         {
             realRight = 0;
         }
-        animator.SetFloat(ANIMATOR_FORWARD, System.Math.Sign(realForward) * (Speed / OriginalSpeed));
-        animator.SetFloat(ANIMATOR_RIGHT, System.Math.Sign(realRight) * (Speed / OriginalSpeed));
+        verticalSpeed += realForward + ( System.Math.Sign(realForward) * Time.deltaTime);
+        horizontalSpeed += realRight + ( System.Math.Sign(realRight) * Time.deltaTime);
+        Debug.Log(horizontalSpeed);
+
+        if(System.Math.Abs(verticalSpeed) > 1)
+        {
+            verticalSpeed = System.Math.Sign(verticalSpeed);
+        }
+        if(System.Math.Abs(horizontalSpeed) > 1)
+        {
+            horizontalSpeed = System.Math.Sign(horizontalSpeed);
+        }
+
+        animator.SetFloat(ANIMATOR_FORWARD, verticalSpeed * (Speed / OriginalSpeed));
+        animator.SetFloat(ANIMATOR_RIGHT, horizontalSpeed * (Speed / OriginalSpeed));
         rbody.MovePosition(newPosition);
     }
 
@@ -68,6 +99,6 @@ public class CharacterControl : MonoBehaviour
         euler.x = 0;
         euler.y += 180;
         rotation.eulerAngles = euler;
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.fixedDeltaTime * turnSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, turnSpeed);
     }
 }

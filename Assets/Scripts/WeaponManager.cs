@@ -53,7 +53,10 @@ public class WeaponManager : MonoBehaviour
         {
         }
 
-        random = new System.Random();
+        var r = new System.Security.Cryptography.RNGCryptoServiceProvider();
+        var bytes = new byte[sizeof(System.Int32)];
+        r.GetBytes(bytes);
+        random = new System.Random(System.BitConverter.ToInt32(bytes, 0));
 
         EquipWeapon(PickWeapon(), 1f);
     }

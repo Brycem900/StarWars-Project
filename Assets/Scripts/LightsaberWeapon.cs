@@ -14,20 +14,51 @@ public class LightsaberWeapon : GameWeapon
     private float timeBetweenSwings = 0f;
 
     private Weapon weaponScript = null;
+    private GameObject bladeObject;
+    private LightsaberBlade bladeScript;
+    private float untilCanAttack;
+
+    public float TimeBetweenSwings
+    {
+        get { return timeBetweenSwings; }
+        set { timeBetweenSwings = value; }
+    }
 
     void Start()
     {
-        weaponScript = transform.Find("Weapon").gameObject.GetComponent<Weapon>();
+        weaponScript = GetWeaponComponent();
+        bladeObject = GetBladeObject();
+        bladeScript = bladeObject.GetComponent<LightsaberBlade>();
+        bladeScript.Owner = Owner;
+        untilCanAttack = Time.time;
     }
 
     override public void Attack()
     {
+        if(bladeScript == null)
+        {
+            if(bladeObject == null)
+            {
+                bladeObject = GetBladeObject();
+            }
 
+            bladeScript = bladeObject.GetComponent<LightsaberBlade>();
+        }
+        bladeScript.MinDamage = minDamage;
+        bladeScript.MaxDamage = maxDamage;
+        bladeScript.Enabled = true;
+        untilCanAttack = Time.time + timeBetweenSwings;
+        weaponScript.PlaySwingSound();
     }
 
     override public bool CanAttack()
     {
-        return true;
+        return !OnCooldown();
+    }
+
+    public bool OnCooldown()
+    {
+        return untilCanAttack >= Time.time;
     }
 
     public void ToggleWeaponOnOff()
@@ -39,8 +70,24 @@ public class LightsaberWeapon : GameWeapon
     {
         if(weaponScript == null)
         {
-            weaponScript = transform.Find("Weapon").gameObject.GetComponent<Weapon>();
+            weaponScript = GetWeaponComponent();
         }
         weaponScript.bladeColor = c;
     }
+
+    public void DoneAttack()
+    {
+        bladeScript.Enabled = false;
+    }
+
+    private Weapon GetWeaponComponent()
+    {
+        return transform.Find("Weapon").gameObject.GetComponent<Weapon>();
+    }
+
+    private GameObject GetBladeObject()
+    {
+        return transform.Find("Weapon/Blade").gameObject;
+    }
+
 }
