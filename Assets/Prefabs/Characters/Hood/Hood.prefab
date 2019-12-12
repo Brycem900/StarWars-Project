@@ -526,10 +526,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0932fb53cd95fd547bb54216ed2eaf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightsaber: {fileID: 3191634847286132727, guid: 338d6140098fc9c4882b10da78ed285f,
-    type: 3}
-  pistol: {fileID: 1244390726855398, guid: 392a05bd229c33043ae112a856120172, type: 3}
-  rifle: {fileID: 8470304310394462193, guid: d4fcacc213c7f0c428ca415a6a0d6b9f, type: 3}
+  isPlayer: 0
+  weaponTypes:
+  - {fileID: 3191634847286132727, guid: 338d6140098fc9c4882b10da78ed285f, type: 3}
+  - {fileID: 8470304310394462193, guid: d4fcacc213c7f0c428ca415a6a0d6b9f, type: 3}
+  - {fileID: 1244390726855398, guid: 392a05bd229c33043ae112a856120172, type: 3}
+  weaponSpawnRates:
+  - 0.1
+  - 0.3
+  - 0.6
 --- !u!114 &6837972376946154111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,13 +574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c86dfe9d1d028045887b1d0a2b92f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 0}
   timeToZoomIn: 0.2
   zoomInAmount: 30
-  rifleBullet: {fileID: 8863866267780623281, guid: e420155b7c0932e4bab34aaba2de85a5,
-    type: 3}
-  pistolBullet: {fileID: 8863866267780623281, guid: 4d306c31954c1b342a4e9bac25a493d8,
-    type: 3}
+  isPlayer: 0
 --- !u!1 &2732440509576465351
 GameObject:
   m_ObjectHideFlags: 0

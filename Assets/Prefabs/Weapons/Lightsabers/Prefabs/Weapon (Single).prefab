@@ -420,6 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3191634847286132721}
+  - component: {fileID: 7737867221056177917}
   m_Layer: 0
   m_Name: Weapon (Single)
   m_TagString: Lightsaber
@@ -442,6 +443,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7737867221056177917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191634847286132727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd3af23001fe24d4bb647fa98d61dcd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDamage: 80
+  minDamage: 10
+  timeBetweenSwings: 0.3
 --- !u!1 &3191634847293003336
 GameObject:
   m_ObjectHideFlags: 0

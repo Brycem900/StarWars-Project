@@ -6,30 +6,44 @@ using UnityStandardAssets.CrossPlatformInput;
 [RequireComponent(typeof(CharacterControl))]
 public class PlayerControl : MonoBehaviour
 {
+    public float timeToFullSpeed = 0.5f;
+
     private CharacterControl character;
+    private float currentTimeToFullSpeed;
     // Start is called before the first frame update
     void Start()
     {
         character = GetComponent<CharacterControl>();
+        currentTimeToFullSpeed = 0f;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
         var shift = Input.GetAxis("LeftShift");
         var rightClick = Input.GetAxis("Fire2");
-        var newSpeed = character.OriginalSpeed;
+        currentTimeToFullSpeed += Time.deltaTime;
+        if(currentTimeToFullSpeed > timeToFullSpeed)
+        {
+            currentTimeToFullSpeed = timeToFullSpeed;
+        }
+
+        var newSpeed = character.OriginalSpeed * (currentTimeToFullSpeed / timeToFullSpeed);
+
 
         if(shift > 0 || rightClick > 0)
         {
-            newSpeed = character.OriginalSpeed / 2;
+            newSpeed /= 2f;
         }
-
-        if(h != 0 || v < 0)
+        else if(h != 0 && v != 0)
         {
-            newSpeed = character.OriginalSpeed / 2;
+            newSpeed /= 2f;
+        }
+        else if(h != 0 || v < 0)
+        {
+            newSpeed /= 1.2f;
         }
 
         character.Speed = newSpeed;
@@ -41,5 +55,10 @@ public class PlayerControl : MonoBehaviour
         var lookAtPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
 
         character.LookAtRotate(lookAtPosition);
+
+        if(v == 0 && h == 0)
+        {
+            currentTimeToFullSpeed = 0;
+        }
     }
 }

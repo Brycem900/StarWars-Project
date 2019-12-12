@@ -7,17 +7,24 @@ public class LockCursor : MonoBehaviour
     void OnMouseDown()
     {
         // Lock the cursor
-        Screen.lockCursor = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Start()
     {
-        Screen.lockCursor = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
+
+    
 
     void Update()
     {
         if (Input.GetKeyDown("escape"))
-            Screen.lockCursor = false;
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
     }
 }

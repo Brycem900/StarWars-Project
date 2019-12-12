@@ -81,9 +81,6 @@ public class WeaponSettings
     public static readonly string PISTOL_NAME = "Pistol";
     public static readonly string RIFLE_NAME = "Rifle";
 
-    public static readonly double PISTOL_WEAPON_CHANCE = 0.40f;
-    public static readonly double RIFLE_WEAPON_CHANCE = 0.10f;
-
     public static readonly float LIGHTSABER_AGENT_DISTANCE = 2;
     public static readonly float PISTOL_AGENT_DISTANCE = 5;
     public static readonly float RIFLE_AGENT_DISTANCE = 7;
@@ -131,6 +128,50 @@ public class WeaponSettings
         [STORMTROOPER_PLAYER_NAME]  = new WeaponSettings{ position=STORMTROOPER_RIFLE_POSITION, rotation=STORMTROOPER_RIFLE_ROTATION, scale=STORMTROOPER_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
         [ALIEN_NAME]                = new WeaponSettings{ position=ALIEN_RIFLE_POSITION, rotation=ALIEN_RIFLE_ROTATION, scale=ALIEN_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
         [ALIEN_PLAYER_NAME]         = new WeaponSettings{ position=ALIEN_RIFLE_POSITION, rotation=ALIEN_RIFLE_ROTATION, scale=ALIEN_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+    };
+
+    public static readonly Dictionary<string, Color> LIGHTSABER_COLOR_MAPPINGS = new Dictionary<string, Color>
+    {
+        [HOOD_NAME]                 = HOOD_LIGHTSABER_COLOR,
+        [HOOD_PLAYER_NAME]          = HOOD_LIGHTSABER_COLOR,
+        [ETHAN_NAME]                = ETHAN_LIGHTSABER_COLOR,
+        [ETHAN_PLAYER_NAME]         = ETHAN_LIGHTSABER_COLOR,
+        [STORMTROOPER_NAME]         = STORMTROOPER_LIGHTSABER_COLOR,
+        [STORMTROOPER_PLAYER_NAME]  = STORMTROOPER_LIGHTSABER_COLOR,
+        [ALIEN_NAME]                = ALIEN_LIGHTSABER_COLOR,
+        [ALIEN_PLAYER_NAME]         = ALIEN_LIGHTSABER_COLOR
+    };
+
+    public static readonly Dictionary<System.Tuple<string, string>, WeaponSettings> WEAPON_MAPPINGS = new Dictionary<System.Tuple<string, string>, WeaponSettings>
+    {
+        [new System.Tuple<string, string>(HOOD_NAME, PISTOL_NAME)]                      = new WeaponSettings{ position=HOOD_PISTOL_POSITION, rotation=HOOD_PISTOL_ROTATION, scale=HOOD_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(HOOD_NAME, RIFLE_NAME)]                       = new WeaponSettings{ position=HOOD_RIFLE_POSITION, rotation=HOOD_RIFLE_ROTATION, scale=HOOD_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(HOOD_NAME, LIGHTSABER_NAME)]                  = new WeaponSettings{ position=HOOD_LIGHTSABER_POSITION, rotation=HOOD_LIGHTSABER_ROTATION, scale=HOOD_LIGHTSABER_SCALE, controllerPath=LIGHTSABER_ANIMATOR_CONTROLLER, navAgentDistance=LIGHTSABER_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(HOOD_PLAYER_NAME, PISTOL_NAME)]               = new WeaponSettings{ position=HOOD_PISTOL_POSITION, rotation=HOOD_PISTOL_ROTATION, scale=HOOD_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(HOOD_PLAYER_NAME, RIFLE_NAME)]                = new WeaponSettings{ position=HOOD_RIFLE_POSITION, rotation=HOOD_RIFLE_ROTATION, scale=HOOD_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(HOOD_PLAYER_NAME, LIGHTSABER_NAME)]           = new WeaponSettings{ position=HOOD_LIGHTSABER_POSITION, rotation=HOOD_LIGHTSABER_ROTATION, scale=HOOD_LIGHTSABER_SCALE, controllerPath=LIGHTSABER_ANIMATOR_CONTROLLER, navAgentDistance=LIGHTSABER_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ETHAN_NAME, PISTOL_NAME)]                     = new WeaponSettings{ position=ETHAN_PISTOL_POSITION, rotation=ETHAN_PISTOL_ROTATION, scale=ETHAN_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ETHAN_NAME, RIFLE_NAME)]                      = new WeaponSettings{ position=ETHAN_RIFLE_POSITION, rotation=ETHAN_RIFLE_ROTATION, scale=ETHAN_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ETHAN_NAME, LIGHTSABER_NAME)]                 = new WeaponSettings{ position=ETHAN_LIGHTSABER_POSITION, rotation=ETHAN_LIGHTSABER_ROTATION, scale=ETHAN_LIGHTSABER_SCALE, controllerPath=LIGHTSABER_ANIMATOR_CONTROLLER, navAgentDistance=LIGHTSABER_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ETHAN_PLAYER_NAME, PISTOL_NAME)]              = new WeaponSettings{ position=ETHAN_PISTOL_POSITION, rotation=ETHAN_PISTOL_ROTATION, scale=ETHAN_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ETHAN_PLAYER_NAME, RIFLE_NAME)]               = new WeaponSettings{ position=ETHAN_RIFLE_POSITION, rotation=ETHAN_RIFLE_ROTATION, scale=ETHAN_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ETHAN_PLAYER_NAME, LIGHTSABER_NAME)]          = new WeaponSettings{ position=ETHAN_LIGHTSABER_POSITION, rotation=ETHAN_LIGHTSABER_ROTATION, scale=ETHAN_LIGHTSABER_SCALE, controllerPath=LIGHTSABER_ANIMATOR_CONTROLLER, navAgentDistance=LIGHTSABER_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(STORMTROOPER_NAME, PISTOL_NAME)]              = new WeaponSettings{ position=STORMTROOPER_PISTOL_POSITION, rotation=STORMTROOPER_PISTOL_ROTATION, scale=STORMTROOPER_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(STORMTROOPER_NAME, RIFLE_NAME)]               = new WeaponSettings{ position=STORMTROOPER_RIFLE_POSITION, rotation=STORMTROOPER_RIFLE_ROTATION, scale=STORMTROOPER_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(STORMTROOPER_NAME, LIGHTSABER_NAME)]          = new WeaponSettings{ position=STORMTROOPER_LIGHTSABER_POSITION, rotation=STORMTROOPER_LIGHTSABER_ROTATION, scale=STORMTROOPER_LIGHTSABER_SCALE, controllerPath=LIGHTSABER_ANIMATOR_CONTROLLER, navAgentDistance=LIGHTSABER_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(STORMTROOPER_PLAYER_NAME, PISTOL_NAME)]       = new WeaponSettings{ position=STORMTROOPER_PISTOL_POSITION, rotation=STORMTROOPER_PISTOL_ROTATION, scale=STORMTROOPER_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(STORMTROOPER_PLAYER_NAME, RIFLE_NAME)]        = new WeaponSettings{ position=STORMTROOPER_RIFLE_POSITION, rotation=STORMTROOPER_RIFLE_ROTATION, scale=STORMTROOPER_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(STORMTROOPER_PLAYER_NAME, LIGHTSABER_NAME)]   = new WeaponSettings{ position=STORMTROOPER_LIGHTSABER_POSITION, rotation=STORMTROOPER_LIGHTSABER_ROTATION, scale=STORMTROOPER_LIGHTSABER_SCALE, controllerPath=LIGHTSABER_ANIMATOR_CONTROLLER, navAgentDistance=LIGHTSABER_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ALIEN_NAME, PISTOL_NAME)]                     = new WeaponSettings{ position=ALIEN_PISTOL_POSITION, rotation=ALIEN_PISTOL_ROTATION, scale=ALIEN_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ALIEN_NAME, RIFLE_NAME)]                      = new WeaponSettings{ position=ALIEN_RIFLE_POSITION, rotation=ALIEN_RIFLE_ROTATION, scale=ALIEN_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ALIEN_NAME, LIGHTSABER_NAME)]                 = new WeaponSettings{ position=ALIEN_LIGHTSABER_POSITION, rotation=ALIEN_LIGHTSABER_ROTATION, scale=ALIEN_LIGHTSABER_SCALE, controllerPath=LIGHTSABER_ANIMATOR_CONTROLLER, navAgentDistance=LIGHTSABER_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ALIEN_PLAYER_NAME, PISTOL_NAME)]              = new WeaponSettings{ position=ALIEN_PISTOL_POSITION, rotation=ALIEN_PISTOL_ROTATION, scale=ALIEN_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ALIEN_PLAYER_NAME, RIFLE_NAME)]               = new WeaponSettings{ position=ALIEN_RIFLE_POSITION, rotation=ALIEN_RIFLE_ROTATION, scale=ALIEN_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(ALIEN_PLAYER_NAME, LIGHTSABER_NAME)]          = new WeaponSettings{ position=ALIEN_LIGHTSABER_POSITION, rotation=ALIEN_LIGHTSABER_ROTATION, scale=ALIEN_LIGHTSABER_SCALE, controllerPath=LIGHTSABER_ANIMATOR_CONTROLLER, navAgentDistance=LIGHTSABER_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(BDROID_NAME, PISTOL_NAME)]                    = new WeaponSettings{ position=BDROID_PISTOL_POSITION, rotation=BDROID_PISTOL_ROTATION, scale=BDROID_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(BDROID_NAME, RIFLE_NAME)]                     = new WeaponSettings{ position=BDROID_RIFLE_POSITION, rotation=BDROID_RIFLE_ROTATION, scale=BDROID_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(BDROID_PLAYER_NAME, PISTOL_NAME)]             = new WeaponSettings{ position=BDROID_PISTOL_POSITION, rotation=BDROID_PISTOL_ROTATION, scale=BDROID_PISTOL_SCALE, controllerPath=PISTOL_ANIMATOR_CONTROLLER, navAgentDistance=PISTOL_AGENT_DISTANCE },
+        [new System.Tuple<string, string>(BDROID_PLAYER_NAME, RIFLE_NAME)]              = new WeaponSettings{ position=BDROID_RIFLE_POSITION, rotation=BDROID_RIFLE_ROTATION, scale=BDROID_RIFLE_SCALE, controllerPath=RIFLE_ANIMATOR_CONTROLLER, navAgentDistance=RIFLE_AGENT_DISTANCE }
     };
 
     public static bool IsHood(string tag)

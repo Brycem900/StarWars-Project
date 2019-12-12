@@ -7,40 +7,15 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-    private static readonly string WAVE_STARTS_MESSAGE = "Next Wave Starts in: ";
-    private static readonly string WAVE_STARTED_MESSAGE = "Wave Started";
-
-    [SerializeField]
-    private float secondsBetweenWaves = 10f;
-
-    [SerializeField]
-    private Transform spawnMiddle;
-
-    [SerializeField]
-    private float spawnRadius;
-
-    [SerializeField]
-    private List<GameObject> enemyTypes;
-
-    [SerializeField]
-    private List<float> enemySpawnRates;
-
-    [SerializeField]
-    private float scalingFactor = 1.2f;
-
-    [SerializeField]
-    private int startingEnemies = 5;
-
-    [SerializeField]
-    private int maxEnemies;
-
+    public float secondsBetweenWaves = 10f;
+    public Transform spawnMiddle;
+    public float spawnRadius;
+    public List<GameObject> enemyTypes;
+    public List<float> enemySpawnRates;
+    public float scalingFactor = 1.2f;
+    public int startingEnemies = 5;
+    public int maxEnemies;
     public GameObject currentPlayer;
-
-    [SerializeField]
-    private Text waveUIText;
-
-    [SerializeField]
-    private Text waveStartsUIText;
 
     private System.Random random;
     private List<GameObject> enemies;
@@ -49,6 +24,18 @@ public class WaveManager : MonoBehaviour
     private float previousNumberEnemies;
     private int wave;
     private float currentWaveCountdown;
+
+    public float CurrentWaveCountdown
+    {
+        get { return currentWaveCountdown; }
+        set { currentWaveCountdown = value; }
+    }
+
+    public int Wave
+    {
+        get { return wave; }
+        set { wave = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -60,9 +47,6 @@ public class WaveManager : MonoBehaviour
         var ordered = enemySpawnRates.OrderBy(x => x);
         Assert.IsTrue(enemySpawnRates.SequenceEqual(ordered));
 
-        Assert.IsNotNull(currentPlayer);
-        Assert.IsNotNull(waveUIText);
-        Assert.IsNotNull(waveStartsUIText);
         if(spawnMiddle == null)
         {
             spawnMiddle = gameObject.transform;
@@ -87,12 +71,7 @@ public class WaveManager : MonoBehaviour
             currentWaveCountdown -= Time.deltaTime;
             if(currentWaveCountdown <= 0)
             {
-                waveStartsUIText.text = WAVE_STARTED_MESSAGE;
                 StartWave();
-            }
-            else
-            {
-                waveStartsUIText.text = System.String.Format("{0} {1:#0.0}", WAVE_STARTS_MESSAGE, currentWaveCountdown);
             }
         }
         else
@@ -133,8 +112,6 @@ public class WaveManager : MonoBehaviour
         {
             enemies.Add(SpawnEnemy(PickEnemy()));
         }
-
-        waveUIText.text = wave.ToString();
     }
 
     private GameObject PickEnemy()

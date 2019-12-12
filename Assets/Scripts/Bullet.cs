@@ -60,7 +60,7 @@ public class Bullet : MonoBehaviour
             var otherCombat = other.GetComponent<CombatManager>();
             if(otherCombat != null)
             {
-                otherCombat.Health -= damage * (1 + owner.GetComponent<CombatManager>().DamageExtraPercentage);
+                otherCombat.Health -= damage * (1 + otherCombat.DamageExtraPercentage);
             }
 
             Destroy(gameObject);

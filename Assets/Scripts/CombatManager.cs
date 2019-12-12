@@ -1,21 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(WeaponManager))]
 public class CombatManager : MonoBehaviour
 {
-    public Text healthText;
     public float timeToZoomIn;
     public float zoomInAmount;
-    public GameObject rifleBullet;
-    public GameObject pistolBullet;
+    public bool isPlayer;
 
-    private static readonly string HAND = "mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandIndex1";
     private static readonly string HEALTH_PARAMETER = "Health";
     private static readonly string DEATH_TRIGGER = "Death";
+    private static readonly string SHOOT_TRIGGER = "Shoot";
+    private static readonly string SHOOT_SPEED = "ShootSpeed";
+    private static readonly string RELOAD_TRIGGER = "Reload";
+    private static readonly string RELOAD_SPEED = "ReloadSpeed";
     private static readonly string DEATH_ANIMATION_TYPE = "RandomDeath";
     private static readonly string DEATH_ANIMAIONS = "DeathAnimations";
     private static readonly string AIMING_TRIGGER = "Aiming";
@@ -26,42 +26,51 @@ public class CombatManager : MonoBehaviour
     private float damageExtraPercentage;
     private float speedExtraPercentage;
     private float healthExtraPercentage;
-    private bool isPlayer;
     private bool aiming;
     private float lastLeftClick;
     private UnityEngine.AI.NavMeshAgent agent;
     private Animator animController;
     private WeaponManager weaponManager;
+    private AnimationClip reloadAnimation;
+    private AnimationClip shootAnimation;
     private float originalZoom;
     private float zoomTimer;
-    private GameObject hand;
 
     public float Health
     {
-        get{ return health * (1 + HealthExtraPercentage); } set { health = value * (1 + DamageReductionPercentage); }
+        get { return health * (1 + HealthExtraPercentage); }
+        set { health = value * (1 + DamageReductionPercentage); }
     }
 
     public float DamageReductionPercentage
     {
-        get; set;
+        get { return damageReductionPercentage; }
+        set { damageReductionPercentage = value; }
     }
 
     public float DamageExtraPercentage
     {
-        get; set;
+        get { return damageReductionPercentage; }
+        set { damageExtraPercentage = value; }
     }
 
     public float SpeedExtraPercentage
     {
-        get; set;
+        get { return speedExtraPercentage; }
+        set { speedExtraPercentage = value; }
     }
 
     public float HealthExtraPercentage
     {
-        get; set;
+        get { return healthExtraPercentage; }
+        set { healthExtraPercentage = value; }
     }
 
-    // Start is called before the first frame update
+    public WeaponManager WeaponManager
+    {
+        get { return weaponManager; }
+    }
+
     void Start()
     {
         health = 100f;
@@ -69,8 +78,6 @@ public class CombatManager : MonoBehaviour
         damageReductionPercentage = 0f;
         speedExtraPercentage = 0f;
         healthExtraPercentage = 0f;
-
-        isPlayer = WeaponSettings.IsPlayer(gameObject.tag);
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         animController = GetComponent<Animator>();
         weaponManager = GetComponent<WeaponManager>();
@@ -78,16 +85,28 @@ public class CombatManager : MonoBehaviour
         originalZoom = Camera.main.fieldOfView;
         zoomTimer = timeToZoomIn;
         lastLeftClick = 0;
-        hand = gameObject.transform.Find(HAND).gameObject;
+
+        var clips = animController.runtimeAnimatorController.animationClips;
+        foreach(var clip in clips)
+        {
+            if(clip.name.Contains(RELOAD_TRIGGER))
+            {
+                reloadAnimation = clip;
+            }
+            else if(clip.name.Contains(SHOOT_TRIGGER))
+            {
+                shootAnimation = clip;
+            }
+            if(reloadAnimation != null && shootAnimation != null)
+            {
+                break;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(healthText != null)
-        {
-            healthText.text = Health.ToString();
-        }
         if(Health <= 0)
         {
             if(agent != null)
@@ -101,38 +120,51 @@ public class CombatManager : MonoBehaviour
             animController.SetInteger(DEATH_ANIMATION_TYPE, deathAnimation);
             Destroy(gameObject, DESTROY_DELAY_SECONDS);
         }
-
-        if(agent != null)
+        else
         {
-            agent.speed = agent.speed * (1 + SpeedExtraPercentage);
-        }
-    }
-
-    void FixedUpdate()
-    {
-        var rightClick = Input.GetAxis("Fire2");
-        var leftClick = Input.GetAxis("Fire1");
-        if(WeaponSettings.IsPlayer(gameObject.tag))
-        {
-            if(!aiming && rightClick != 0
-            || aiming && rightClick == 0)
+            if(agent != null)
             {
-                ToggleAiming();
+                agent.speed = agent.speed * (1 + SpeedExtraPercentage);
             }
 
-            if(zoomTimer < timeToZoomIn)
+            if(isPlayer)
             {
-                var zoom = aiming ? -1 : 1;
-                Camera.main.fieldOfView += (zoomInAmount * zoom) * Time.fixedDeltaTime;
-                zoomTimer += Time.fixedDeltaTime;
-            }
+                var aim = Input.GetAxis("Fire2");
+                var fire = Input.GetAxis("Fire1");
+                var reload = Input.GetAxis("Reload");
 
-            if((leftClick > 0 && lastLeftClick == 0) && aiming)
-            {
-                Attack();
-            }
+                if(!aiming && aim != 0
+                || aiming && aim == 0)
+                {
+                    ToggleAiming();
+                }
 
-            lastLeftClick = leftClick;
+                if(zoomTimer < timeToZoomIn)
+                {
+                    var zoom = aiming ? -1 : 1;
+                    Camera.main.fieldOfView += (zoomInAmount * zoom) * Time.fixedDeltaTime;
+                    zoomTimer += Time.fixedDeltaTime;
+                }
+
+                if((fire > 0 && lastLeftClick == 0) && aiming && weaponManager.WeaponComponent.CanAttack())
+                {
+                    Attack();
+                }
+
+                lastLeftClick = fire;
+
+                if(reload != 0)
+                {
+                    var gun = weaponManager.CurrentWeapon.GetComponent<GunWeapon>();
+                    if(gun != null && !gun.Reloading)
+                    {
+                        gun.Reloading = true;
+                        gun.PlayReloadSound();
+                        animController.SetFloat(RELOAD_SPEED, reloadAnimation.length / gun.ReloadTime);
+                        animController.SetTrigger(RELOAD_TRIGGER);
+                    }
+                }
+            }
         }
     }
 
@@ -141,28 +173,26 @@ public class CombatManager : MonoBehaviour
         animController.SetTrigger(AIMING_TRIGGER);
         aiming = !aiming;
         zoomTimer = 0;
-        if(WeaponSettings.IsLightsaber(weaponManager.CurrentWeapon.Weapon.tag))
+        var lightsaberComponent = weaponManager.CurrentWeapon.GetComponent<LightsaberWeapon>();
+        if(lightsaberComponent != null)
         {
-            weaponManager.CurrentWeapon.Weapon.transform.Find("Weapon").gameObject.GetComponent<Weapon>().ToggleWeaponOnOff();
+            lightsaberComponent.ToggleWeaponOnOff();
         }
     }
 
     public void Attack()
     {
-        GameObject bullet = null;
-        if(WeaponSettings.IsRifle(weaponManager.CurrentWeapon.Weapon.tag))
+        var gun = weaponManager.CurrentWeapon.GetComponent<GunWeapon>();
+        if(gun != null)
         {
-            bullet = rifleBullet;
+            animController.SetFloat(SHOOT_SPEED, shootAnimation.length / gun.TimeBetweenShots);
         }
-        else if(WeaponSettings.IsPistol(weaponManager.CurrentWeapon.Weapon.tag))
-        {
-            bullet = pistolBullet;
-        }
-        
-        if(bullet != null)
-        {
-            var realBullet = Instantiate<GameObject>(bullet, hand.transform.position, transform.rotation);
-            realBullet.GetComponent<Bullet>().Owner = gameObject;
-        }
+        animController.SetTrigger(SHOOT_TRIGGER);
+        weaponManager.WeaponComponent.Attack();
+    }
+
+    private void DoneReloading()
+    {
+        ((GunWeapon) weaponManager.WeaponComponent).Reload();
     }
 }

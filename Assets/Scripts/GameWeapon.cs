@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameWeapon
+abstract public class GameWeapon : MonoBehaviour
 {
-    private GameObject weapon;
-    private float durability;
+    private static readonly string OWNER_HAND = "mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandIndex1";
 
-    public GameObject Weapon
-    {
-        get { return weapon; }
-        set { weapon = value; }
-    }
+    private float durability = 0f;
+    private GameObject owner;
+    private GameObject ownerHand;
 
     public float Durability
     {
@@ -19,9 +16,25 @@ public class GameWeapon
         set { durability = value; }
     }
 
-    public GameWeapon(GameObject weapon, float durability)
+    public GameObject Owner
     {
-        this.weapon = weapon;
-        this.durability = durability;
+        get { return owner; }
+        set
+        {
+            owner = value;
+            if(owner != null)
+            {
+                ownerHand = owner.transform.Find(OWNER_HAND).gameObject;
+            }
+        }
     }
+
+    public GameObject OwnerHand
+    {
+        get { return ownerHand; }
+    }
+
+    abstract public void Attack();
+
+    abstract public bool CanAttack();
 }

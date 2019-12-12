@@ -47,11 +47,11 @@ public class CharacterControl : MonoBehaviour
         var direction = -transform.InverseTransformDirection(transform.position - newPosition);
         var realForward = direction.z;
         var realRight = direction.x;
-        if(System.Math.Abs(realForward) < 0.01)
+        if(System.Math.Abs(realForward) < 0.001)
         {
             realForward = 0;
         }
-        if(System.Math.Abs(realRight) < 0.01)
+        if(System.Math.Abs(realRight) < 0.001)
         {
             realRight = 0;
         }
