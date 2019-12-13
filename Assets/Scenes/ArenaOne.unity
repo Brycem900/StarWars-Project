@@ -7961,7 +7961,7 @@ MonoBehaviour:
   health: {fileID: 755096554}
   ammo: {fileID: 1649723747}
   wave: {fileID: 1886026153}
-  score: {fileID: 1904357418}
+  scoreText: {fileID: 1904357418}
   waveStarts: {fileID: 1971215381}
   crosshair: {fileID: 472120874}
 --- !u!4 &2034826851
