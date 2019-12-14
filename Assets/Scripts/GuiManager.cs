@@ -28,6 +28,11 @@ public class GuiManager : MonoBehaviour
         set { score = value; }
     }
 
+    void Awake()
+    {
+        currentPlayer = GameObject.Find("Player");
+    }
+
     void Start()
     {
         combatManager = currentPlayer.GetComponent<CombatManager>();

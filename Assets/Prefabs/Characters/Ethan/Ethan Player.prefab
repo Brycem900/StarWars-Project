@@ -1408,14 +1408,13 @@ GameObject:
   - component: {fileID: 1582930687279687564}
   - component: {fileID: -251926197470469638}
   - component: {fileID: -747330729576880772}
-  - component: {fileID: -2075378351087933886}
   - component: {fileID: 2152319651110122752}
-  - component: {fileID: -6463810081017587021}
   - component: {fileID: 442579377639307549}
   - component: {fileID: -8449785751746088054}
+  - component: {fileID: -5563439541606172200}
   m_Layer: 0
   m_Name: Ethan Player
-  m_TagString: Ethan Player
+  m_TagString: Ethan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1428,7 +1427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5559387025751980261}
   m_LocalRotation: {x: -0.026176924, y: 0, z: 0, w: 0.99965733}
-  m_LocalPosition: {x: 1705.0076, y: 41.12342, z: 1931.9459}
+  m_LocalPosition: {x: 1715.898, y: 76.31566, z: 711.5892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6077394255821873352}
@@ -1450,7 +1449,7 @@ Animator:
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1470,7 +1469,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &-747330729576880772
 CapsuleCollider:
@@ -1486,26 +1485,6 @@ CapsuleCollider:
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0.05}
---- !u!114 &-2075378351087933886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5559387025751980261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 500
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
 --- !u!114 &2152319651110122752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1516,18 +1495,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ede940ec92b4b64483168e361e90f87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-6463810081017587021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5559387025751980261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521b611700410be45810047f0a74e899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &442579377639307549
@@ -1566,6 +1533,20 @@ MonoBehaviour:
   timeToZoomIn: 0.2
   zoomInAmount: 30
   isPlayer: 1
+--- !u!114 &-5563439541606172200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559387025751980261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10cca318e4fd2304cbe833cccb1d6260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  turnSpeed: 5
 --- !u!1 &5655409436234815612
 GameObject:
   m_ObjectHideFlags: 0

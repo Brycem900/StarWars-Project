@@ -58,10 +58,15 @@ public class WeaponManager : MonoBehaviour
         r.GetBytes(bytes);
         random = new System.Random(System.BitConverter.ToInt32(bytes, 0));
 
+        GiveRandomWeapon();
+    }
+
+    public void GiveRandomWeapon()
+    {
         EquipWeapon(PickWeapon(), 1f);
     }
 
-    private GameObject PickWeapon()
+    public GameObject PickWeapon()
     {
         var roll = random.NextDouble();
         var cumulative = 0.0;

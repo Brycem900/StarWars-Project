@@ -91,6 +91,7 @@ public class GunWeapon : GameWeapon
         CurrentClip--;
         if(sounds.Count > 0)
         {
+            audio.Stop();
             audio.PlayOneShot(sounds[Random.Range(0, sounds.Count)]);
         }
     }

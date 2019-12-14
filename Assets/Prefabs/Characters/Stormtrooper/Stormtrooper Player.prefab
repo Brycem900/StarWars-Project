@@ -1912,15 +1912,13 @@ GameObject:
   - component: {fileID: 3701832997415216798}
   - component: {fileID: 7103020481432208259}
   - component: {fileID: 283007302263210632}
-  - component: {fileID: -2740956325526928330}
   - component: {fileID: -4512643182220177032}
-  - component: {fileID: 1257396369555128512}
   - component: {fileID: 4393808714363185794}
-  - component: {fileID: 5376618835018728018}
   - component: {fileID: 5820676265213606137}
+  - component: {fileID: 4805169934022098819}
   m_Layer: 0
   m_Name: Stormtrooper Player
-  m_TagString: Stormtrooper Player
+  m_TagString: Stormtrooper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1988,28 +1986,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &-2740956325526928330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750368842865621495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 500
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
 --- !u!114 &-4512643182220177032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2020,18 +1998,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ede940ec92b4b64483168e361e90f87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1257396369555128512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750368842865621495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521b611700410be45810047f0a74e899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &4393808714363185794
@@ -2055,26 +2021,6 @@ MonoBehaviour:
   - 0.1
   - 0.3
   - 0.6
---- !u!114 &5376618835018728018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750368842865621495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 500
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
 --- !u!114 &5820676265213606137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2089,7 +2035,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToZoomIn: 0.2
   zoomInAmount: 30
-  isPlayer: 0
+  isPlayer: 1
+--- !u!114 &4805169934022098819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7750368842865621495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10cca318e4fd2304cbe833cccb1d6260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  turnSpeed: 5
 --- !u!1 &7761779831021997458
 GameObject:
   m_ObjectHideFlags: 0

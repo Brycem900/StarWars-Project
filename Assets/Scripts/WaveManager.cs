@@ -37,6 +37,18 @@ public class WaveManager : MonoBehaviour
         set { wave = value; }
     }
 
+    void Awake()
+    {
+        currentPlayer = GameObject.Find("Player");
+        currentPlayer.transform.position = spawnMiddle.position;
+
+        var weaponManager = currentPlayer.GetComponent<WeaponManager>();
+        if(weaponManager != null)
+        {
+            weaponManager.GiveRandomWeapon();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_Menu.unity
     guid: 4efdcfee34b9dbf49854251249c736e5
   - enabled: 1
-    path: Assets/Scenes/ArenaOne.unity
+    path: Assets/Scenes/Barn Yard.unity
     guid: c8d6579418a6e174c855f893fb20445a
   - enabled: 1
     path: Assets/Scenes/ArenaTwo.unity

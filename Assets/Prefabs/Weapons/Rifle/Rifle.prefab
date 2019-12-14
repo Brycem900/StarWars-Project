@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8863866267780623281, guid: e420155b7c0932e4bab34aaba2de85a5, type: 3}
   maxDamage: 50
-  minDamage: 20
+  minDamage: 40
   timeBetweenShots: 0.5
   maxClipSize: 10
   reloadTime: 3.5

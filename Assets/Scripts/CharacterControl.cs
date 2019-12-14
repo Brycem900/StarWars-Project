@@ -49,11 +49,11 @@ public class CharacterControl : MonoBehaviour
     {
         horizontalSpeed -= System.Math.Sign(horizontalSpeed) * Time.fixedDeltaTime * (float) System.Math.PI;
         verticalSpeed -= System.Math.Sign(verticalSpeed) * Time.fixedDeltaTime * (float) System.Math.PI;
-        if(System.Math.Abs(horizontalSpeed) < 0.01)
+        if(System.Math.Abs(horizontalSpeed) < 0.05)
         {
             horizontalSpeed = 0;
         }
-        if(System.Math.Abs(verticalSpeed) < 0.01)
+        if(System.Math.Abs(verticalSpeed) < 0.05)
         {
             verticalSpeed = 0;
         }
@@ -65,17 +65,8 @@ public class CharacterControl : MonoBehaviour
         var direction = -transform.InverseTransformDirection(transform.position - newPosition);
         var realForward = direction.z;
         var realRight = direction.x;
-        if(System.Math.Abs(realForward) < 0.001)
-        {
-            realForward = 0;
-        }
-        if(System.Math.Abs(realRight) < 0.001)
-        {
-            realRight = 0;
-        }
         verticalSpeed += realForward + ( System.Math.Sign(realForward) * Time.deltaTime);
         horizontalSpeed += realRight + ( System.Math.Sign(realRight) * Time.deltaTime);
-        Debug.Log(horizontalSpeed);
 
         if(System.Math.Abs(verticalSpeed) > 1)
         {
