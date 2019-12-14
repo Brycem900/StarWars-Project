@@ -1495,6 +1495,11 @@ MonoBehaviour:
   timeToZoomIn: 0.2
   zoomInAmount: 30
   isPlayer: 0
+  health: 100
+  damageReductionPercentage: 0
+  damageExtraPercentage: 0
+  speedExtraPercentage: 0
+  healthExtraPercentage: 0
 --- !u!1 &8962919489854227797
 GameObject:
   m_ObjectHideFlags: 0

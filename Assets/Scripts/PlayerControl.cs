@@ -7,13 +7,12 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerControl : MonoBehaviour
 {
     private CharacterControl character;
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         character = GetComponent<CharacterControl>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         var h = Input.GetAxis("Horizontal");
@@ -42,8 +41,8 @@ public class PlayerControl : MonoBehaviour
         var horizontalMovement = transform.right * System.Math.Sign(h) * Time.deltaTime;
 
         character.Move(verticalMovement + horizontalMovement);
-        var lookAtPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, Screen.height / 2));
+        var lookAtPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        character.LookAtRotate(lookAtPosition);
+        character.LookAtRotate(lookAtPosition, true);
     }
 }

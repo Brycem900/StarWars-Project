@@ -28,6 +28,11 @@ public class GuiManager : MonoBehaviour
         set { score = value; }
     }
 
+    public GameObject Crosshair
+    {
+        get { return crosshair; }
+    }
+
     void Awake()
     {
         currentPlayer = GameObject.Find("Player");

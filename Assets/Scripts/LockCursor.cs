@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class LockCursor : MonoBehaviour
 {
-    void OnMouseDown()
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
+
+    void Awake()
     {
-        // Lock the cursor
-        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     
-
     void Update()
     {
         if (Input.GetKeyDown("escape"))
         {
-            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
+    }
+
+    void OnGUI()
+    {
+        var mousePos = Event.current.mousePosition;
+
+        mousePos.x = Mathf.Clamp(mousePos.x, minX, maxX);
+        mousePos.y = Mathf.Clamp(mousePos.y, minY, maxY);
     }
 }

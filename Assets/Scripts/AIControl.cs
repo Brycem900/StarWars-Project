@@ -6,22 +6,36 @@ using UnityEngine;
 [RequireComponent(typeof (UnityEngine.AI.NavMeshAgent))]
 public class AIControl : MonoBehaviour
 {
+    public Transform target;
+
     private CharacterControl character;
     private UnityEngine.AI.NavMeshAgent agent;
-    public Transform target;
-    // Start is called before the first frame update
+
+    public UnityEngine.AI.NavMeshAgent Agent
+    {
+        get { return agent; }
+    }
+
+    public CharacterControl Character
+    {
+        get { return character; }
+    }
+
     void Start()
     {
         character = GetComponent<CharacterControl>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(target != null)
         {
             agent.SetDestination(target.position);
+            if(!IsFacingTarget())
+            {
+                character.LookAtRotate(target.position);
+            }
         }
 
         if(agent.remainingDistance > agent.stoppingDistance)
@@ -32,5 +46,10 @@ public class AIControl : MonoBehaviour
         {
             character.Move(Vector3.zero);
         }
+    }
+
+    public bool IsFacingTarget()
+    {
+        return Vector3.Dot(agent.destination - transform.position, transform.forward) > 0;
     }
 }

@@ -31,5 +31,6 @@ public class CharacterSelection : ButtonSelection<GameObject>
 
         selectedItem = Instantiate<GameObject>(player);
         selectedItem.transform.position = previousPosition;
+        selectedItem.GetComponent<WeaponManager>().GiveRandomWeapon();
     }
 }

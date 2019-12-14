@@ -86,6 +86,13 @@ public class GunWeapon : GameWeapon
     {
         untilCanShoot = Time.time + timeBetweenShots;
         var realBullet = Instantiate<GameObject>(bullet, OwnerHand.transform.position, Owner.transform.rotation);
+        if(Owner.GetComponent<CombatManager>().isPlayer)
+        {
+            var v3 = Input.mousePosition;
+            v3.z = 10.0f;
+            v3 = Camera.main.ScreenToWorldPoint(v3);
+            realBullet.transform.LookAt(v3);
+        }
         realBullet.GetComponent<Bullet>().Owner = Owner;
         realBullet.GetComponent<Bullet>().Damage = Random.Range(MinDamage, MaxDamage);
         CurrentClip--;

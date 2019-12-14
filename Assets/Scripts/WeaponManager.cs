@@ -31,8 +31,7 @@ public class WeaponManager : MonoBehaviour
         set { weaponComponent = value; }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Assert.AreEqual(weaponTypes.Count, weaponSpawnRates.Count);
         Assert.IsTrue(weaponSpawnRates.All(x => x>= 0));
@@ -57,8 +56,6 @@ public class WeaponManager : MonoBehaviour
         var bytes = new byte[sizeof(System.Int32)];
         r.GetBytes(bytes);
         random = new System.Random(System.BitConverter.ToInt32(bytes, 0));
-
-        GiveRandomWeapon();
     }
 
     public void GiveRandomWeapon()

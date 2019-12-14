@@ -4,8 +4,6 @@ using UnityEngine;
 
 abstract public class GameWeapon : MonoBehaviour
 {
-    private static readonly string OWNER_HAND = "mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandIndex1";
-
     private float durability = 0f;
     private GameObject owner;
     private GameObject ownerHand;
@@ -24,7 +22,8 @@ abstract public class GameWeapon : MonoBehaviour
             owner = value;
             if(owner != null)
             {
-                ownerHand = owner.transform.Find(OWNER_HAND).gameObject;
+                var characterComponent = owner.GetComponent<CharacterControl>();
+                ownerHand = characterComponent.Bones["RightHand"].gameObject;
             }
         }
     }

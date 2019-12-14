@@ -41,12 +41,7 @@ public class WaveManager : MonoBehaviour
     {
         currentPlayer = GameObject.Find("Player");
         currentPlayer.transform.position = spawnMiddle.position;
-
-        var weaponManager = currentPlayer.GetComponent<WeaponManager>();
-        if(weaponManager != null)
-        {
-            weaponManager.GiveRandomWeapon();
-        }
+        currentPlayer.GetComponent<WeaponManager>().GiveRandomWeapon();
     }
 
     // Start is called before the first frame update
@@ -150,7 +145,7 @@ public class WaveManager : MonoBehaviour
 
         var spawnedEnemy = Instantiate<GameObject>(enemyType, newPosition, Quaternion.identity);
         spawnedEnemy.GetComponent<AIControl>().target = currentPlayer.transform;
-        spawnedEnemy.AddComponent<CombatManager>();
+        spawnedEnemy.GetComponent<WeaponManager>().GiveRandomWeapon();
 
         return spawnedEnemy;
     }

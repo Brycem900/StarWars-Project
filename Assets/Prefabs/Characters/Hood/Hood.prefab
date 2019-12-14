@@ -532,9 +532,9 @@ MonoBehaviour:
   - {fileID: 8470304310394462193, guid: d4fcacc213c7f0c428ca415a6a0d6b9f, type: 3}
   - {fileID: 1244390726855398, guid: 392a05bd229c33043ae112a856120172, type: 3}
   weaponSpawnRates:
-  - 0.1
-  - 0.3
-  - 0.6
+  - 0.2
+  - 0.4
+  - 0.4
 --- !u!114 &6837972376946154111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,6 +577,11 @@ MonoBehaviour:
   timeToZoomIn: 0.2
   zoomInAmount: 30
   isPlayer: 0
+  health: 100
+  damageReductionPercentage: 0
+  damageExtraPercentage: 0
+  speedExtraPercentage: 0
+  healthExtraPercentage: 0
 --- !u!1 &2732440509576465351
 GameObject:
   m_ObjectHideFlags: 0

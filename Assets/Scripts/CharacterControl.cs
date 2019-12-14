@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class CharacterControl : MonoBehaviour
 {
+    private static readonly string HIP_BONE = "mixamorig:Hips";
     private static readonly string ANIMATOR_FORWARD = "Forward";
     private static readonly string ANIMATOR_RIGHT = "Right";
 
@@ -20,6 +21,19 @@ public class CharacterControl : MonoBehaviour
     private Animator animator;
     private float horizontalSpeed;
     private float verticalSpeed;
+    private bool forceStop;
+    private Dictionary<string, Transform> bones;
+
+    public Dictionary<string, Transform> Bones
+    {
+        get { return bones; }
+    }
+
+    public bool ForceStop
+    {
+        get { return forceStop; }
+        set { forceStop = value; }
+    }
 
     public float OriginalSpeed
     {
@@ -36,13 +50,29 @@ public class CharacterControl : MonoBehaviour
         get{ return turnSpeed; } set{ turnSpeed = value; }
     }
 
-    void Start()
+    void Awake()
     {
         rbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         originalSpeed = speed;
         horizontalSpeed = 0f;
         verticalSpeed = 0f;
+        forceStop = false;
+        bones = new Dictionary<string, Transform>();
+        AddBone(transform.Find(HIP_BONE));
+    }
+
+    private void AddBone(Transform bone)
+    {
+        if(bone.name.Contains("mixamorig:"))
+        {
+            var name = bone.name.Substring(bone.name.LastIndexOf('/') + 1).Replace("mixamorig:", "");
+            bones[name] = bone;
+            foreach(Transform child in bone)
+            {
+                AddBone(child);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -61,35 +91,49 @@ public class CharacterControl : MonoBehaviour
 
     public void Move(Vector3 moveVector)
     {
-        var newPosition = transform.position + (moveVector * Speed);
-        var direction = -transform.InverseTransformDirection(transform.position - newPosition);
-        var realForward = direction.z;
-        var realRight = direction.x;
-        verticalSpeed += realForward + ( System.Math.Sign(realForward) * Time.deltaTime);
-        horizontalSpeed += realRight + ( System.Math.Sign(realRight) * Time.deltaTime);
-
-        if(System.Math.Abs(verticalSpeed) > 1)
+        if(!forceStop)
         {
-            verticalSpeed = System.Math.Sign(verticalSpeed);
-        }
-        if(System.Math.Abs(horizontalSpeed) > 1)
-        {
-            horizontalSpeed = System.Math.Sign(horizontalSpeed);
-        }
+            var newPosition = transform.position + (moveVector * Speed);
+            var direction = -transform.InverseTransformDirection(transform.position - newPosition);
+            var realForward = direction.z;
+            var realRight = direction.x;
+            verticalSpeed += realForward + ( System.Math.Sign(realForward) * Time.deltaTime);
+            horizontalSpeed += realRight + ( System.Math.Sign(realRight) * Time.deltaTime);
 
-        animator.SetFloat(ANIMATOR_FORWARD, verticalSpeed * (Speed / OriginalSpeed));
-        animator.SetFloat(ANIMATOR_RIGHT, horizontalSpeed * (Speed / OriginalSpeed));
-        rbody.MovePosition(newPosition);
+            if(System.Math.Abs(verticalSpeed) > 1)
+            {
+                verticalSpeed = System.Math.Sign(verticalSpeed);
+            }
+            if(System.Math.Abs(horizontalSpeed) > 1)
+            {
+                horizontalSpeed = System.Math.Sign(horizontalSpeed);
+            }
+
+            animator.SetFloat(ANIMATOR_FORWARD, verticalSpeed * (Speed / OriginalSpeed));
+            animator.SetFloat(ANIMATOR_RIGHT, horizontalSpeed * (Speed / OriginalSpeed));
+            rbody.MovePosition(newPosition);
+        }
     }
 
-    public void LookAtRotate(Vector3 location)
+    public void LookAtRotate(Vector3 location, bool flipY=false, float xAmount=0)
     {
-        var lookPos = location - transform.position;
-        var rotation = Quaternion.LookRotation(lookPos);
-        var euler = rotation.eulerAngles;
-        euler.x = 0;
-        euler.y += 180;
-        rotation.eulerAngles = euler;
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, turnSpeed);
+        LookAtRotateObject(transform, location, flipY, xAmount);
+    }
+
+    public void LookAtRotateObject(Transform obj, Vector3 location, bool flipY=false, float xAmount = 0)
+    {
+        if(!forceStop)
+        {
+            var lookPos = location - obj.position;
+            var rotation = Quaternion.LookRotation(lookPos);
+            var euler = rotation.eulerAngles;
+            euler.x = xAmount;
+            if(flipY)
+            {
+                euler.y += 180;
+            }
+            rotation.eulerAngles = euler;
+            obj.rotation = Quaternion.Slerp(obj.rotation, rotation, turnSpeed);
+        }
     }
 }
