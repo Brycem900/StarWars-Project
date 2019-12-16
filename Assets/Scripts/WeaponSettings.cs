@@ -76,9 +76,9 @@ public class WeaponSettings
     public static readonly string PISTOL_NAME = "Pistol";
     public static readonly string RIFLE_NAME = "Rifle";
 
-    public static readonly float LIGHTSABER_AGENT_DISTANCE = 2;
+    public static readonly float LIGHTSABER_AGENT_DISTANCE = 1;
     public static readonly float PISTOL_AGENT_DISTANCE = 5;
-    public static readonly float RIFLE_AGENT_DISTANCE = 7;
+    public static readonly float RIFLE_AGENT_DISTANCE = 6;
 
     public static readonly Color HOOD_LIGHTSABER_COLOR = Color.blue;
     public static readonly Color ETHAN_LIGHTSABER_COLOR = Color.green;

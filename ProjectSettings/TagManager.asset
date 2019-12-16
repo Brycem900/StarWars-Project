@@ -15,6 +15,7 @@ TagManager:
   - Pistol
   - Rifle
   - GUI
+  - ScoreKeeper
   layers:
   - Default
   - TransparentFX

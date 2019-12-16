@@ -21,7 +21,7 @@ public class CombatManager : MonoBehaviour
     private static readonly string RELOAD_SPEED = "ReloadSpeed";
     private static readonly string DEATH_ANIMATION_TYPE = "RandomDeath";
     private static readonly string DEATH_ANIMATIONS = "DeathAnimations";
-    private static readonly string AIMING_TRIGGER = "Aiming";
+    private static readonly string AIMING_BOOL = "Aiming";
     private static readonly float DESTROY_DELAY_SECONDS = 5f;
     private static readonly float LIGHTSABER_BLOCKING_REDUCTION = 0.3f;
 
@@ -235,8 +235,8 @@ public class CombatManager : MonoBehaviour
 
     public void ToggleAiming()
     {
-        animController.SetTrigger(AIMING_TRIGGER);
         aiming = !aiming;
+        animController.SetBool(AIMING_BOOL, aiming);
         zoomTimer = 0;
         if(weaponManager.WeaponComponent is LightsaberWeapon)
         {
