@@ -1458,10 +1458,9 @@ MonoBehaviour:
   zoomInAmount: 30
   isPlayer: 1
   health: 100
-  damageReductionPercentage: 0.5
+  damageReductionPercentage: 1
   damageExtraPercentage: 0
   speedExtraPercentage: 0.2
-  healthExtraPercentage: 0.3
 --- !u!114 &-7776824731398306082
 MonoBehaviour:
   m_ObjectHideFlags: 0

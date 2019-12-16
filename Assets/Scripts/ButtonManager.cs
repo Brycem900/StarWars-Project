@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -32,9 +31,7 @@ public class ButtonManager : MonoBehaviour
 	{
 		DontDestroyOnLoad(characterSelection.SelectedItem);
 		characterSelection.SelectedItem.name = "Player";
-		var pathToScene = AssetDatabase.GetAssetPath(levelSelection.SelectedItem);
- 		var scene = new EditorBuildSettingsScene(pathToScene, true);
-		SceneManager.LoadScene(scene.path);
+		SceneManager.LoadScene(levelSelection.SelectedItem);
 	}
 
 	public void HandleLevelSelectButtonOnClickEvent()

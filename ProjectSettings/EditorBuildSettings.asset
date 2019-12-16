@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Barn Yard.unity
     guid: c8d6579418a6e174c855f893fb20445a
   - enabled: 1
-    path: Assets/Scenes/ArenaTwo.unity
+    path: Assets/Scenes/Forest.unity
     guid: 62ac51bd0f979994ebc78fd2021bef67
   - enabled: 1
     path: Assets/Scenes/Sandbox.unity

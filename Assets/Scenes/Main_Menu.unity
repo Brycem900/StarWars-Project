@@ -1876,15 +1876,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d76ffc81bda2574db8fc392a684eb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSelection: {fileID: 102900000, guid: c8d6579418a6e174c855f893fb20445a, type: 3}
+  defaultSelection: Barn Yard
   buttonDimensions: {x: 160, y: 30}
   buttonStartPosition: {x: 0, y: 0}
   buttonImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   spaceBetween: 35
   selections:
-  - {fileID: 102900000, guid: c8d6579418a6e174c855f893fb20445a, type: 3}
-  - {fileID: 102900000, guid: 62ac51bd0f979994ebc78fd2021bef67, type: 3}
-  - {fileID: 102900000, guid: 3ea290050a451f34688d70ad0d40ac1d, type: 3}
+  - Barn Yard
+  - Forest
 --- !u!1 &1770217344
 GameObject:
   m_ObjectHideFlags: 0

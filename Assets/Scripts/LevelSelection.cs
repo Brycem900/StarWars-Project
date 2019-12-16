@@ -3,25 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEditor;
 
-public class LevelSelection : ButtonSelection<Object>
+public class LevelSelection : ButtonSelection<string>
 {
-    override protected GameObject CreateButton(Object scene)
+    override protected GameObject CreateButton(string scene)
     {
         var obj = base.CreateButton(scene);
-        var pathToScene = AssetDatabase.GetAssetPath(scene);
- 		var actualScene = new EditorBuildSettingsScene(pathToScene, true);
-        obj.transform.GetChild(0).GetComponent<Text>().text = GetNameByPath(actualScene.path);
-
+        obj.transform.GetChild(0).GetComponent<Text>().text = scene;
         return obj;
-    }
-
-    private string GetNameByPath(string path)
-    {
-        int slash = path.LastIndexOf('/');
-        string name = path.Substring(slash + 1);
-        int dot = name.LastIndexOf('.');
-        return name.Substring(0, dot);
     }
 }

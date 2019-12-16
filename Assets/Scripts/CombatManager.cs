@@ -146,6 +146,7 @@ public class CombatManager : MonoBehaviour
             }
             else
             {
+                characterControl.Speed = characterControl.OriginalSpeed * (1 + SpeedExtraPercentage);
                 if(isPlayer)
                 {
                     var aim = Input.GetAxis("Fire2");
@@ -179,7 +180,6 @@ public class CombatManager : MonoBehaviour
                 }
                 else
                 {
-                    AI.Agent.speed *= (1 + SpeedExtraPercentage);
                     if(AI.target != null)
                     {
                         var targetCombat = AI.target.GetComponent<CombatManager>();

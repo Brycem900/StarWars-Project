@@ -1482,7 +1482,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.15
+  m_Radius: 0.2
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.8, z: 0.05}
@@ -1573,7 +1573,6 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageExtraPercentage: 0
   speedExtraPercentage: 0
-  healthExtraPercentage: 0
 --- !u!1 &5655409436234815612
 GameObject:
   m_ObjectHideFlags: 0
